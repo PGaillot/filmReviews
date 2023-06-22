@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       //   this.films = [...this.films, res]
       // }),
 
-      this.tmdbApi.getDiscover().subscribe(res => {
+      this.tmdbApi.getDiscover('18',false, false ).subscribe(res => {
         console.log(res.results)
         res.results.forEach((movie: Movie) =>
           this.films = [...this.films, movie]
