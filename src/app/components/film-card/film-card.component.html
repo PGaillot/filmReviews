@@ -1,5 +1,21 @@
 <div id="movie-card">
-    <p class="title-card">{{film.title | titlecase}}</p>
-    <p>{{film.overview}}</p>
-    <img [src]="posterPath" alt="" srcset="">
+    <div class="top-cont">
+        <span class="content">
+            <p class="title-card">{{film.title | titlecase}}</p>
+            <p>{{film.overview}}</p>
+        </span>
+        <span class="gradient top-gradient"></span>
+    </div>
+
+
+    <div class="bottom-cont">
+        <span class="gradient bottom-gradient"></span>
+        <span class="content bottom-content">
+            <button class="btn" type="button" (click)="btnClick('approuved')">👍</button>
+            <button class="btn" type="button" (click)="btnClick('idk')">💁‍♀️</button>
+            <button class="btn" type="button"(click)="btnClick('disapproved')">👎</button>
+        </span>
+    </div>
+
+    <img class="poster" [src]="posterPath" alt="" srcset="">
 </div>

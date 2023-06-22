@@ -11,6 +11,7 @@ export const environment = {
     configuration: API_URL + '/configuration',
     movie: {
       TMDB_MOVIE_URL: API_URL + '/movie',
+      TMDB_MOVIE_GENRE: API_URL + '/genre/movie/list',
 
     },
     discover: {

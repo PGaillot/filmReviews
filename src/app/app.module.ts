@@ -7,12 +7,16 @@ import { HomeComponent } from './components/home/home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UatInterceptor } from 'src/helpers/uat.interceptior';
 import { FilmCardComponent } from './components/film-card/film-card.component';
+import { MoviesListSelectionComponent } from './components/movies-list-selection/movies-list-selection.component';
+import { SortSessionComponent } from './components/sort-session/sort-session.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FilmCardComponent
+    FilmCardComponent,
+    MoviesListSelectionComponent,
+    SortSessionComponent
   ],
   imports: [
     BrowserModule,
