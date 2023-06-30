@@ -12,7 +12,6 @@ export const environment = {
     movie: {
       TMDB_MOVIE_URL: API_URL + '/movie',
       TMDB_MOVIE_GENRE: API_URL + '/genre/movie/list',
-
     },
     discover: {
       TMDB_DISC_MOVIE_URL: API_URL + '/discover/movie'

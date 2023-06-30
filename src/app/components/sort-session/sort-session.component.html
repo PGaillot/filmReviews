@@ -1,1 +1,9 @@
-<p>sort-session works!</p>
+<div *ngIf="!isLoaded" class="loader">
+    {{genreId}}
+</div>
+
+<div class="result" *ngIf="reviews.length === 20">
+    {{genreId}} : {{(scoreAvr / 100).toFixed(2)}} / 10
+</div>
+
+<app-film-card *ngIf="isLoaded && reviews.length < 20" [film]="films[filmIndex]" (choiseEvent)="btnClick($event)"></app-film-card>

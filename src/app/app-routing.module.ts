@@ -5,12 +5,17 @@ import { MoviesListSelectionComponent } from './components/movies-list-selection
 
 const routes: Routes = [
   {
-    path: 'session',
-    component: SortSessionComponent
+    path: 'session/:genreId',
+    component: SortSessionComponent,
+    
   },
   {
     path: 'genre-select',
     component: MoviesListSelectionComponent
+  },
+  {
+    path:'**',
+    redirectTo:'genre-select'
   },
 ];
 

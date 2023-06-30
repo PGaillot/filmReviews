@@ -19,7 +19,6 @@ export class TmdbConfigService {
   fetchConfiguration() {
     return this.http.get(environment.api.configuration).pipe(
       tap((config) => {
-        console.log('this.fetchConfiguration()')
         this.configuration.next(config);
         this.configuration.complete();
       })

@@ -1,0 +1,16 @@
+@import '/src/colors.scss';
+
+.loader, .result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: $black-500;
+    color: $white;
+    font-family: 'Pathway Extreme', sans-serif;
+    font-size: 48px ;
+    font-weight: 900;
+    text-align: center;
+    transform: scale();
+}

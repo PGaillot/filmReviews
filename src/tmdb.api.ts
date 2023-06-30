@@ -10,10 +10,9 @@ export class TMDBApi {
 
     constructor(private http: HttpClient) { }
 
-    private params: HttpParams = new HttpParams()
+    params: HttpParams = new HttpParams()
         .set('api_key', API_KEY)
-        .set('language', 'fr')
-
+        .set('language', 'fr-FR')
 
     /**
      * Get Movie by Id.
@@ -48,22 +47,30 @@ export class TMDBApi {
      * @param include_adult (false by default)
      * @returns movie[] (observable)
      */
-    //const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=%2C18';
-    getDiscover( with_genres: string, include_video: boolean = false, include_adult: boolean = false): Observable<any> {
-        this.params
+    getDiscover(with_genres: string, include_video: boolean = false, include_adult: boolean = false): Observable<Movie[]> {
+        let discParams: HttpParams =this.params
             .set('include_video', include_video)
             .set('include_adult', include_adult)
             .set('with_genres', with_genres);
 
-            console.log(this.params)
-
-        return this.http.get(environment.api.discover.TMDB_DISC_MOVIE_URL, { params: this.params }).pipe(
-            map(res => {
-                return res
+        return this.http.get(environment.api.discover.TMDB_DISC_MOVIE_URL, { params: discParams }).pipe(
+            map((res: any) => {
+                return res.results.map((data: any) => formatData.convertDataToMovie(data))
             })
         );
     }
 
+    getCreditByMovie(movieId: number): Observable<any> {
+        return this.http.get(environment.api.movie.TMDB_MOVIE_URL + '/' + movieId + '/credits', { params: this.params }).pipe(
+            map(res => res)
+        )
+    }
+
+    getWatchProviders(movieId:number):Observable<any>{
+        return this.http.get(environment.api.movie.TMDB_MOVIE_URL +'/' + movieId + '/watch/providers', {params:this.params}).pipe(
+            map(res => res)
+        )
+    }
 
     getConfiguration(): Observable<any> {
         return this.http.get(environment.api.configuration)

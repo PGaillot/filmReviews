@@ -2,18 +2,35 @@
     <div class="top-cont">
         <span class="content">
             <p class="title-card">{{film.title | titlecase}}</p>
-            <p>{{film.overview}}</p>
+            <p>{{truncateText(film.overview, 250)}}</p>
+            <div class="cast-cont">
+                <div class="more-btn" *ngFor="let actor of cast">{{actor.name}}</div>
+            </div>
+            <div class="watch-provider-cont">
+                <div class="watch-provider" *ngFor="let watchProvider of watchProviders">
+                    <img [src]="watchProvider.logo_path" alt="" srcset="">
+                </div>
+            </div>
+
         </span>
-        <span class="gradient top-gradient"></span>
+        <span class="gradient top-gradient">
+
+        </span>
     </div>
 
 
     <div class="bottom-cont">
         <span class="gradient bottom-gradient"></span>
         <span class="content bottom-content">
-            <button class="btn" type="button" (click)="btnClick('approuved')">👍</button>
-            <button class="btn" type="button" (click)="btnClick('idk')">💁‍♀️</button>
-            <button class="btn" type="button"(click)="btnClick('disapproved')">👎</button>
+            <div class="btn" (mousedown)="startClicking('approuved')" (mouseup)="stopClicking()"><span
+                    [ngStyle]="{'font-size': (score > 0 ? 20 + (score / 30) : 20 )+ 'pt'}" class="approuved">👍</span>
+            </div>
+            <div class="btn" (mousedown)="startClicking('idk')" (mouseup)="stopClicking()"><span
+                    [ngStyle]="{'font-size': (score === 0 ? 20 + (score / 30) : 20 )+ 'pt'}" class="idk">💁‍♀️</span>
+            </div>
+            <div class="btn" (mousedown)="startClicking('disapproved')" (mouseup)="stopClicking()"><span
+                    [ngStyle]="{'font-size': (score < 0 ? 20 + ((score * -1) / 30) : 20 )+ 'pt'}"
+                    class=" disapproved">👎</span></div>
         </span>
     </div>
 

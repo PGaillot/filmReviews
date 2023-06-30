@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TMDBApi } from 'src/tmdb.api';
 
 @Component({
@@ -9,13 +9,15 @@ import { TMDBApi } from 'src/tmdb.api';
 })
 export class MoviesListSelectionComponent implements OnInit {
 
-  constructor(private tmdbApi:TMDBApi,
-    private router:Router
+  constructor(
+    private tmdbApi:TMDBApi,
+    private router:Router,
     ) { }
   genres:any[] = [];
   @Output() genreSelected = new EventEmitter<string>();
 
   ngOnInit(): void {
+    
     this.tmdbApi.getMovieGenre().subscribe((res:any[]) => {
       this.genres = res;
     })
@@ -23,7 +25,8 @@ export class MoviesListSelectionComponent implements OnInit {
 
   onItemClick(genre:any){
     this.genreSelected.emit(genre);
-    this.router.navigate(['./session'])
+    console.log(genre.id)
+    this.router.navigate(['./session/'+ genre.id ])
   }
 
   
