@@ -18,9 +18,11 @@
         </span>
     </div>
 
-
+    <app-film-details *ngIf="details"></app-film-details>
+    
     <div class="bottom-cont">
         <span class="gradient bottom-gradient"></span>
+        <div class="more-btn" (click)="moreClick()" *ngIf="!details">plus d'infos</div>
         <span class="content bottom-content">
             <div class="btn" (mousedown)="startClicking('approuved')" (mouseup)="stopClicking()"><span
                     [ngStyle]="{'font-size': (score > 0 ? 20 + (score / 30) : 20 )+ 'pt'}" class="approuved">👍</span>

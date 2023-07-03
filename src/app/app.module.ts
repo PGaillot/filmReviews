@@ -9,6 +9,9 @@ import { UatInterceptor } from 'src/helpers/uat.interceptior';
 import { FilmCardComponent } from './components/film-card/film-card.component';
 import { MoviesListSelectionComponent } from './components/movies-list-selection/movies-list-selection.component';
 import { SortSessionComponent } from './components/sort-session/sort-session.component';
+import { FilmDetailsComponent } from './components/film-details/film-details.component';
+import { MovieResearchListComponent } from './components/movie-research-list/movie-research-list.component';
+import { GameComponent } from './components/game/game.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { SortSessionComponent } from './components/sort-session/sort-session.com
     HomeComponent,
     FilmCardComponent,
     MoviesListSelectionComponent,
-    SortSessionComponent
+    SortSessionComponent,
+    FilmDetailsComponent,
+    MovieResearchListComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,

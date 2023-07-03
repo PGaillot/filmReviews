@@ -1,0 +1,10 @@
+<h2 class="results-count">nombre de resulats : {{resultCount}} films.</h2>
+
+<div class="film-element" *ngFor="let film of films">
+    <h3 class="title">{{film.title}}</h3>
+    <p>{{film.vote_average}}</p>
+    <img class="poster-background" [src]="getMoviePoster(film.poster_path)" alt="" srcset="">
+    <div class="more-btn" [routerLink]="'/movie/' + film.id">...</div>
+</div>
+
+<div *ngIf="totalPages != pageResults" class="btn" (click)="moreClick()">afficher la page {{pageResults + 1}}</div>

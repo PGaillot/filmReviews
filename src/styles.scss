@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import '/src/colors.scss';
+
+
 * {
     margin: 0;
     padding: 0;
@@ -59,16 +61,46 @@ button {
     -moz-appearance: none;
 }
 
-button:hover,
-button:focus {
-    background: #0053ba;
+.btn{
+    font-family: 'Pathway Extreme', sans-serif;
+    padding: 1em 0.5em;
+    border: solid $black-500 4px;
+    color: $black-500;
+    font-size: 16pt;
+    font-weight: 900;
+    border-radius: 1em;
+    text-align: center;
+    cursor: pointer;
+    margin: 2px;
+
+    &:hover{
+        color: $primary;
+        margin: 0;
+        border-bottom: solid $black-500 6px;
+        border-right: solid $black-500 6px;
+    }
+
+    &:active{
+        color: $primary;
+        margin: 0;
+        border: solid $primary 4px;
+        border-bottom: solid $primary 6px;
+        border-right: solid $primary 6px;
+    }
 }
 
-button:focus {
-    outline: 1px solid #fff;
-    outline-offset: -4px;
-}
+.chip{
 
-button:active {
-    transform: scale(0.99);
+    color: $black-500;
+    background-color:$gray-100;;
+    padding: 0.25em 0.75em;
+    border-radius: 1em;
+
+    &:hover{
+
+    }
+
+    &:active{
+
+    }
 }

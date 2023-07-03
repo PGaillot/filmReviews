@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { API_KEY, environment } from './environments/environment';
 import { Movie } from './models/movie.model';
 import * as formatData from 'src/helpers/formatData.helper';
+import { MovieDetails } from './models/movieDetails.model';
 
 @Injectable({ providedIn: 'root' })
 export class TMDBApi {
@@ -30,11 +31,34 @@ export class TMDBApi {
         );
     }
 
+
+    /**
+     * Get Movie by Id.
+     * -
+     * return a movie model.
+     * 
+     * @param id 
+     * @returns movie (observable)
+     */
+    getMovieDetails(id: number): Observable<MovieDetails> {
+        return this.http.get(environment.api.movie.TMDB_MOVIE_URL + '/' + id, { params: this.params }).pipe(
+            map((res: any) => {
+                return formatData.convertDataToMovieDetails(res);
+            })
+        );
+    }
+
     getMovieGenre(): Observable<any> {
         return this.http.get(environment.api.movie.TMDB_MOVIE_GENRE, { params: this.params }).pipe(
             map((res: any) => {
                 return res.genres
             })
+        )
+    }
+
+    getMovieImages(filmId: string): Observable<any> {
+        return this.http.get(environment.api.movie.TMDB_MOVIE_URL + '/' + filmId + '/images').pipe(
+            map((res: any) => res)
         )
     }
 
@@ -48,7 +72,7 @@ export class TMDBApi {
      * @returns movie[] (observable)
      */
     getDiscover(with_genres: string, include_video: boolean = false, include_adult: boolean = false): Observable<Movie[]> {
-        let discParams: HttpParams =this.params
+        let discParams: HttpParams = this.params
             .set('include_video', include_video)
             .set('include_adult', include_adult)
             .set('with_genres', with_genres);
@@ -60,14 +84,28 @@ export class TMDBApi {
         );
     }
 
+
+    searchMovie(query: string, page: number): Observable<any> {
+        let searchParams: HttpParams = this.params
+            .set('page', page)
+            .set('query', query);
+
+        return this.http.get(environment.api.search.TMDB_MOVIE_SEARCH, { params: searchParams }).pipe(
+            map((res: any) => {
+                console.log(res)
+                return res
+            })
+        )
+    }
+
     getCreditByMovie(movieId: number): Observable<any> {
         return this.http.get(environment.api.movie.TMDB_MOVIE_URL + '/' + movieId + '/credits', { params: this.params }).pipe(
             map(res => res)
         )
     }
 
-    getWatchProviders(movieId:number):Observable<any>{
-        return this.http.get(environment.api.movie.TMDB_MOVIE_URL +'/' + movieId + '/watch/providers', {params:this.params}).pipe(
+    getWatchProviders(movieId: number): Observable<any> {
+        return this.http.get(environment.api.movie.TMDB_MOVIE_URL + '/' + movieId + '/watch/providers', { params: this.params }).pipe(
             map(res => res)
         )
     }

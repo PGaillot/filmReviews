@@ -1,0 +1,35 @@
+@import '/src/colors.scss';
+
+.header {
+    padding: 2em 0;
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+
+    .search-bar {
+        input {
+            font-size: 24px;
+            font-family: 'Pathway Extreme', sans-serif;
+            width: 100%;
+            border: none;
+            background-color: $white;
+
+            &:focus {
+                outline: none;
+                text-decoration: none;
+                // font-family: 'Pathway Extreme', sans-serif;
+            }
+        }
+    }
+
+    .btn {
+        width: 80% !important;
+        background-color: $white;
+    }
+
+}

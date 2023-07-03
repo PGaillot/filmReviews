@@ -1,7 +1,5 @@
+
 <div id="main-movie-list-selector">
-
-        <h1 class="title noselect">select the type of film to sort ...</h1>
-
-    <div *ngFor="let genre of genres" (click)="onItemClick(genre)" class="noselect genre-item">{{genre.name}}</div>
-
+    <h1 class="title noselect">select the type of film to sort ...</h1>
+    <div *ngFor="let genre of genres" (click)="onItemClick(genre)" class="noselect btn">{{genre.name}}</div>
 </div>

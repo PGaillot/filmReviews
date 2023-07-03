@@ -1,0 +1,16 @@
+<body>
+    <h2 class="title">{{ film.title }}</h2>
+    <p class="tagline" *ngIf="film.tagline != ''">" {{film.tagline}} "</p>
+    <p class="overview">{{film.overview}}</p>
+    <div  class="genres">
+        <span *ngFor="let genre of film.genres" class="chip"> {{genre.name}}</span>
+    </div>
+    <img class="poster" [src]="getPoster(film.poster_path)" alt="">
+
+    <div class="img-carousel">
+        <img *ngFor="let image of images" [src]="getPoster(image.file_path)" alt="">
+    </div>
+
+
+    
+</body>

@@ -1,0 +1,42 @@
+@import '/src/colors.scss';
+
+body {
+    font-family: 'Pathway Extreme', sans-serif;
+    color: $white;
+    background-color: $black-500;
+}
+
+.title {
+    font-size: 2em;
+    padding: 1em;
+}
+
+.tagline {
+    padding: 1em;
+    text-align: center;
+    font-size: 1.5em;
+   font-style: italic;
+}
+
+.overview {
+    padding: 1em;
+}
+
+.poster{
+padding: 0 1em;
+}
+
+.genres{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1em;
+    gap: 0.5em;
+}
+
+.img-carousel{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    overflow-x: scroll;
+}

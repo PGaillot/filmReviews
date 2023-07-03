@@ -31,7 +31,6 @@ export class SortSessionComponent implements OnInit, OnDestroy {
     this.genreId = this.activatedRoute.snapshot.paramMap.get('genreId');
     this.subscripions = [
 
-
       this.api.getDiscover(this.genreId).subscribe((res: any[]) => {
         res.forEach(movie => {
           this.films = [...this.films, movie]

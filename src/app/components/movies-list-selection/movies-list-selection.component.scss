@@ -15,34 +15,5 @@
         padding: 0.5em;
         grid-column: 1;
         grid-row: 1/ span 2;
-
-    }
-
-
-    .genre-item {
-        padding: 1em 0.5em;
-        border: solid $black-500 4px;
-        color: $black-500;
-        font-size: 16pt;
-        font-weight: 900;
-        border-radius: 1em;
-        text-align: center;
-        cursor: pointer;
-        margin: 2px;
-    }
-
-    .genre-item:hover {
-        color: $primary;
-        margin: 0;
-        border-bottom: solid $black-500 6px;
-        border-right: solid $black-500 6px;
-    }
-
-    .genre-item:active {
-        color: $primary;
-        margin: 0;
-        border: solid $primary 4px;
-        border-bottom: solid $primary 6px;
-        border-right: solid $primary 6px;
     }
 }
