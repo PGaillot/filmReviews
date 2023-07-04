@@ -36,8 +36,7 @@ export class FilmDetailsComponent implements OnInit, AfterViewInit , OnDestroy{
             this.api.getMovieImages(this.movieId).subscribe(res => this.images = res.backdrops)
         ]
         
-        
-        
+
     }
     
     

@@ -1,1 +1,38 @@
-<p>game works!</p>
+<div class="content">
+    <div class="top-cont">
+        <p class="title-card">{{film.title | titlecase}}</p>
+
+        <div class="time">
+            <span class="progress-bar">
+                <div class="bar" [ngStyle]="{'width': timeProgress * 100 + '%'}"></div>
+            </span>
+            <p class="timer">{{timer}}</p>
+        </div>
+        <span class="gradient top-gradient">
+        </span>
+    </div>
+
+    <div class="background" *ngIf="timer === 0">
+        <div class="bg-content">
+            <h2>score : {{score}}</h2>
+            <p class="synopsis">{{film.overview}}</p>
+        </div>
+        <span class="bg"></span>
+    </div>
+    <img class="poster" [src]="posterPath" />
+
+    <div class="bottom-cont">
+        <span class="gradient bottom-gradient">
+            <div class="keywordsList" *ngIf="timer !== 0">
+                <span *ngFor="let testedKw of testedKw.reverse()"
+                    [ngClass]="testedKw.score === 0 ? 'not-found' : 'keyword-found'"
+                    class="tested-Kw-element">{{testedKw.keyword}} +{{testedKw.score}}</span>
+            </div>
+        </span>
+        <span class="bottom-content">
+            <input [disabled]="timer === 0" #keywordInput id="keyword-input" type="text"
+                (keyup.enter)="sendKeyword(keywordInput.value)"
+                placeholder="un mot qui pourrait être dans le synopsis.">
+        </span>
+    </div>
+</div>
