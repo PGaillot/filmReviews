@@ -21,8 +21,9 @@ export class GameComponent implements OnInit {
   subscriptions: Subscription[] = [];
   movieId: any = null;
   film: any;
-  keywords: Keyword[] = []
-  testedKw: Keyword[] = []
+  keywords: Keyword[] = [];
+  testedKw: Keyword[] = [];
+  currentKws:any[] = [];
   score: number = 0;
   posterPath: string = "";
   TIMER: number = 120;
@@ -39,6 +40,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.timer = this.TIMER;
 
+
     const timerInterval = setInterval(() => {
       this.timer -= 1;
       this.timeProgress = this.timer / this.TIMER;
@@ -51,6 +53,7 @@ export class GameComponent implements OnInit {
         this.film = res;
         this.prepareKeywords(this.film.overview);
         this.posterPath = this.imgService.getImgUrl(this.film.poster_path);
+        this.currentKws = this.keywords;
       })
     ]
   }
@@ -67,33 +70,29 @@ export class GameComponent implements OnInit {
         'score': 2 + bonusPoints
       }
       const wordsIndex: number = this.keywords.findIndex((kw) => kw.keyword === wordsArray[i].toLocaleLowerCase());
+      // if the keyword is not in the list.
       if (wordsIndex === -1) {
         this.keywords.push(keyword)
       } else {
-
-        try {
-          if (this.keywords[wordsIndex].score > 2) {
-            this.keywords[wordsIndex].score -= 0.5
-          }
-        } catch (e) {
-          console.log(e)
+        if (this.keywords[wordsIndex].score > 2) {
+          this.keywords[wordsIndex].score -= 0.5
         }
       }
     }
-    console.log(this.keywords);
+    // console.log(this.keywords);
   }
 
 
   sendKeyword(value: string) {
     const keywordsInput = document.querySelector('#keyword-input') as HTMLInputElement;
-    let index: number = this.keywords.findIndex((kw) => kw.keyword === value.toLocaleLowerCase());
+    let index: number = this.keywords.findIndex((kw) => kw.keyword === value.toLocaleLowerCase())
+    
     if (index !== -1) {
       this.score += this.keywords[index].score;
-      this.testedKw = [...this.testedKw, this.keywords[index]]
+      this.testedKw = [...this.testedKw, this.keywords[index]];
+      this.currentKws.splice(index, index)
     } else {
       {
-
-
         this.testedKw = [...this.testedKw, { 'keyword': value, 'score': 0 }]
       }
     }

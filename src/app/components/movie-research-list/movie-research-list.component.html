@@ -5,6 +5,7 @@
     <p>{{film.vote_average}}</p>
     <img class="poster-background" [src]="getMoviePoster(film.poster_path)" alt="" srcset="">
     <div class="more-btn" [routerLink]="'/movie/' + film.id">...</div>
+    <div class="game-btn" [routerLink]="'/game/' + film.id">tester le synopsis</div>
 </div>
 
 <div *ngIf="totalPages != pageResults" class="btn" (click)="moreClick()">afficher la page {{pageResults + 1}}</div>

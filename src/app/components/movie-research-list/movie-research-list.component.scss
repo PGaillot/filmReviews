@@ -1,6 +1,6 @@
 @import '/src/colors.scss';
 
-.results-count{
+.results-count {
     padding: 2em;
 }
 
@@ -43,6 +43,20 @@
         width: 2em;
         text-align: center;
         filter: drop-shadow(0 0 1em $black-500);
+    }
+
+    .game-btn {
+        background-color: #c1bdb360;
+        padding: 0.5em 2em;
+        border-radius: 4em;
+        grid-column:  1/2;
+        grid-row: 2;
+        font-size: 16px;
+        // color: $black-500;
+        cursor: pointer;
+        &:hover{
+            background-color: #c1bdb3b9;
+        }
     }
 
     .title {
