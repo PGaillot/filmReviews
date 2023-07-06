@@ -44,11 +44,14 @@ input {
         opacity: 1;
         padding: 0 2em;
 
+
         h2{
             font-size: 32px;
         }
         
-        .synopsis{}
+        .synopsis{
+            
+        }
     }
     .bg{
         position: absolute;
@@ -60,6 +63,7 @@ input {
         z-index: -1 !important;
         opacity: 0.8;
     }
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -166,14 +170,29 @@ input {
     
     .tested-Kw-element{
         color: $gray-100;
-        font-size: 20px;
+        font-size: 18px;
+        .message{
+            font-style: italic;
+            font-weight: 200;
+        }
     }
 
 }
 .not-found{
     text-decoration:line-through;
+    font-weight: 400;
 }
 
 .keyword-found{
     color: $success !important;
+}
+
+.accent-error{
+    color: $primary !important;
+}
+
+
+.find{
+    background-color: aqua;
+    color: red;
 }

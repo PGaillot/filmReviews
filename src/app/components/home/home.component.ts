@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   filmIndex: number = 0;
   subscriptions: Subscription[] = [];
-  films: Movie[] = [];
+  films: number[] = [13, 120, 603, 2899 ];
+  randomFimlIndex: number = 0;
   isLoaded: boolean = false;
 
 
@@ -28,6 +29,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.randomFimlIndex = Math.floor(Math.random() * this.films.length);
+    console.log(this.randomFimlIndex)
     this.subscriptions = [
     ]
   }

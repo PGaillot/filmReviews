@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ImageService } from "src/app/services/image.service";
 import { Movie } from "src/models/movie.model";
@@ -16,7 +16,8 @@ export class MovieResearchListComponent implements OnInit, OnDestroy {
     constructor(
         private activatedRoute: ActivatedRoute,
         private api: TMDBApi,
-        private imgService: ImageService
+        private imgService: ImageService,
+        private router: Router
     ) { }
 
 
@@ -26,7 +27,7 @@ export class MovieResearchListComponent implements OnInit, OnDestroy {
     pageIndex: number = 1;
     resultCount: number = 0;
     pageResults: number = 0;
-    totalPages:number = 0;
+    totalPages: number = 0;
 
     ngOnInit(): void {
         this.query = this.activatedRoute.snapshot.paramMap.get('query');
@@ -62,5 +63,8 @@ export class MovieResearchListComponent implements OnInit, OnDestroy {
         return this.imgService.getImgUrl(poster_path, 3)
     }
 
+    onKey(value: string) {
+        this.router.navigateByUrl('research/' + value);
+    }
 
 }

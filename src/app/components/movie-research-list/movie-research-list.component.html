@@ -1,4 +1,10 @@
-<h2 class="results-count">nombre de resulats : {{resultCount}} films.</h2>
+<div class="header">
+    <div class="search-bar btn">
+        <input #movieSearch type="text" id="name" name="movie-search" placeholder="movie name" required minlength="4"
+            maxlength="24" size="10" (keyup.enter)="onKey(movieSearch.value)" [value]="query">
+    </div>
+    <p class="results-count">nombre de resulats : {{resultCount}} films.</p>
+</div>
 
 <div class="film-element" *ngFor="let film of films">
     <h3 class="title">{{film.title}}</h3>

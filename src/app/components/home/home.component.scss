@@ -1,7 +1,7 @@
 @import '/src/colors.scss';
 
 .header {
-    padding: 2em 0;
+    // padding: 2em 0;
     text-align: center;
 }
 
@@ -12,19 +12,7 @@
     gap: 1em;
 
     .search-bar {
-        input {
-            font-size: 24px;
-            font-family: 'Pathway Extreme', sans-serif;
-            width: 100%;
-            border: none;
-            background-color: $white;
-
-            &:focus {
-                outline: none;
-                text-decoration: none;
-                // font-family: 'Pathway Extreme', sans-serif;
-            }
-        }
+   
     }
 
     .btn {

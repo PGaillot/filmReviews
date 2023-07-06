@@ -104,3 +104,48 @@ button {
 
     }
 }
+
+input {
+    font-size: 24px;
+    font-family: 'Pathway Extreme', sans-serif;
+    width: 100%;
+    border: none;
+    background-color: $white;
+
+    &:focus {
+        outline: none;
+        text-decoration: none;
+        // font-family: 'Pathway Extreme', sans-serif;
+    }
+}
+
+.not-found{
+    text-decoration:line-through;
+    font-weight: 400;
+}
+
+.keyword-found{
+    color: $success !important;
+}
+
+.accent-error{
+    color: $primary !important;
+}
+
+
+.find{
+    background-color: rgba(243, 201, 11, 0.658);
+    color: $black-500 !important;
+    font-weight: 600 !important;
+    padding: 2px 4px;
+}
+
+.findable{
+    color: $white !important;
+    font-weight: 400 !important;
+}
+
+.syn-word{
+    color: $gray-100;
+    font-weight: 200;
+}
