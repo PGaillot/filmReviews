@@ -136,16 +136,17 @@ input {
 .find{
     background-color: rgba(243, 201, 11, 0.658);
     color: $black-500 !important;
-    font-weight: 600 !important;
-    padding: 2px 4px;
+    font-weight: 700 !important;
+    padding: 1px 2px;
 }
 
 .findable{
     color: $white !important;
-    font-weight: 400 !important;
+    font-weight: 600 !important;
 }
 
 .syn-word{
     color: $gray-100;
-    font-weight: 200;
+    font-weight: 400;
+    font-size: 16px;
 }

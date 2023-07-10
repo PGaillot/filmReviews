@@ -15,7 +15,6 @@ const routes: Routes = [
   {
     path: 'session/:genreId',
     component: SortSessionComponent
-    
   },
   {
     path: 'genre-select',

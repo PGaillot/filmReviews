@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
   currentKws: any[] = [];
   score: number = 0;
   posterPath: string = "";
-  TIMER: number = 30;
+  TIMER: number = 120;
   timer: BehaviorSubject<number>;
   timeProgress: number = 1;
   styledText: SafeHtml = ''
@@ -123,7 +123,7 @@ export class GameComponent implements OnInit {
 
   generateStyledText(inputPhrase: string,): string {
     let styledText = '';
-    const words = inputPhrase.split(' ');
+    const words = inputPhrase.split(/[ .,…!,?,;:)'’"(-]/);
 
     words.forEach(word => {
       let spanClass: string = '';
@@ -133,8 +133,6 @@ export class GameComponent implements OnInit {
 
       testedkeyword !== undefined ? spanClass = 'find' : '' ;
       currentkeyword !== undefined ? spanClass = 'findable' : '' ;
-
-
       styledText += `<span class="${spanClass} syn-word">${word}</span> `;
     })
 
