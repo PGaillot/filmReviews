@@ -1,6 +1,6 @@
 @import '/src/colors.scss';
 
-$gradient-height:12em;
+$gradient-height: 12em;
 
 input {
     width: 100%;
@@ -8,17 +8,19 @@ input {
     padding: 0.5em 1em;
     font-size: 16pt;
     border-radius: 100px;
-    &:focus{
+
+    &:focus {
         outline: none;
     }
 }
 
-.content{
+.content {
     font-family: 'Pathway Extreme', sans-serif;
     position: relative;
     height: 100vh;
     width: 100%;
 }
+
 .poster {
     position: absolute;
     top: 50%;
@@ -29,14 +31,15 @@ input {
     z-index: -2;
 }
 
-.background{
+.background {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    .bg-content{
+
+    .bg-content {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -45,20 +48,19 @@ input {
         padding: 0 2em;
 
 
-        h2{
+        h2 {
             font-size: 32px;
         }
-        
-        .synopsis{
-            
-        }
+
+        .synopsis {}
     }
-    .bg{
+
+    .bg {
         position: absolute;
         top: 0;
         left: 0;
         background-color: $black-500;
-        height: 100% ;
+        height: 100%;
         width: 100%;
         z-index: -1 !important;
         opacity: 0.8;
@@ -76,7 +78,7 @@ input {
     height: auto;
     top: 0;
     left: 0;
-    
+
     .title-card {
         background-color: $black-500;
         font-size: 32px;
@@ -85,8 +87,8 @@ input {
         padding: 1em 2em;
         color: $white;
     }
-    
-    .time{
+
+    .time {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -95,21 +97,31 @@ input {
         padding: 0 2em;
         gap: 1em;
 
-        .progress-bar{
+        .progress-bar {
+            position: relative;
             background-color: $dark-gray-500;
             height: 1em;
             width: 100%;
             border-radius: 100px;
             overflow: hidden;
-            
-            .bar{
+
+            .bar {
+                position: absolute;
+                top: 0;
                 background-color: $success;
                 height: 100%;
-                width: 40%;
+                width: 100%;
             }
         }
 
-        .timer{
+        .time-end {
+            color: $white;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .timer {
             width: 40px;
             background-color: $black-500;
             color: $white;
@@ -118,13 +130,13 @@ input {
             text-align: center;
         }
     }
- 
-    .top-gradient{
+
+    .top-gradient {
         transform: rotate(180deg);
     }
 }
 
-.bottom-cont{
+.bottom-cont {
     width: 100%;
     bottom: 0;
 }
@@ -135,8 +147,37 @@ input {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    
-    
+    transition: bottom ease-in-out 500ms;
+
+    .bottom-gradient {
+        position: relative;
+        .btn-share {
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            gap: 1em;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            opacity: 1;
+            bottom: 2em;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 1em;
+            user-select: none;
+            font-size: 20px;
+            transition: opacity ease-in 300ms 200ms;
+            box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.40);
+            background-color: #8D6BF3;
+            color: $white;
+        }
+
+        .btn-share-hiden {
+            opacity: 0;
+            user-select: auto;
+        }
+    }
+
     .bottom-content {
         background-color: $black-500;
         width: 100%;
@@ -145,9 +186,7 @@ input {
         align-items: center;
         justify-content: center;
         gap: 1em;
-
     }
-
 }
 
 .gradient {
@@ -156,43 +195,49 @@ input {
     background: linear-gradient(0deg, $black-500 0%, rgba(6, 6, 6, 0.35) 52.6%, rgba(6, 6, 6, 0) 100%);
 }
 
-.keywordsList{
+.keywordsList {
     position: absolute;
     display: flex;
     flex-direction: column-reverse;
-    top:  $gradient-height;
+    top: $gradient-height;
     font-weight: 700;
     left: 0;
     padding: 0 2em;
     height: 100%;
     transform: translate(0%, -100%);
     filter: drop-shadow(0 0 1em $black-500);
-    
-    .tested-Kw-element{
+
+    .tested-Kw-element {
         color: $gray-100;
         font-size: 18px;
-        .message{
+
+        .message {
             font-style: italic;
             font-weight: 200;
         }
     }
 
 }
-.not-found{
-    text-decoration:line-through;
+
+.not-found {
+    text-decoration: line-through;
     font-weight: 400;
 }
 
-.keyword-found{
+.keyword-found {
     color: $success !important;
 }
 
-.accent-error{
+.accent-error {
     color: $primary !important;
 }
 
+.syn-word {
+    line-height: 20px;
+}
 
-.find{
+
+.find {
     background-color: aqua;
     color: red;
 }

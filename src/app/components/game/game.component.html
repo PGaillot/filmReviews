@@ -2,16 +2,17 @@
     <div class="top-cont">
         <p class="title-card">{{film.title | titlecase}}</p>
         <div class="time">
-            <span class="progress-bar">
-                <div class="bar" [ngStyle]="{'width': timeProgress * 100 + '%'}"></div>
+            <span #progressBar class="progress-bar">
+                <div #bar class="bar"></div>
             </span>
-            <p class="timer">{{timer | async}}</p>
+            <p class="timer" *ngIf="!timeFinished">{{timer | async}}</p>
+            <span *ngIf="timeFinished" class="time-end" >terminé !</span>
         </div>
         <span class="gradient top-gradient">
         </span>
     </div>
 
-    <div class="background" *ngIf="(timer |async) === 0">
+    <div class="background" *ngIf="timeFinished">
         <div class="bg-content">
             <h2>score : {{score}}</h2>
             <p class="synopsis" [innerHTML]="generateStyledText(film.overview)"></p>
@@ -20,16 +21,19 @@
     </div>
     <img class="poster" [src]="posterPath" />
 
-    <div class="bottom-cont">
+    <div #bottomContainer class="bottom-cont">
         <span class="gradient bottom-gradient">
+            <button [ngClass]="timeFinished ? 'btn-share' : 'btn-share-hiden'">Parager votre score<span class="material-symbols-outlined">
+                share
+                </span></button>
             <div class="keywordsList" *ngIf="(timer |async) !== 0">
                 <span *ngFor="let testedKw of testedKw.reverse()"
                     [ngClass]="[testedKw.score === 0 ? 'not-found' : 'keyword-found', testedKw.color === 'accent-error' ? 'accent-error' : '' ]"
                     class="tested-Kw-element">{{testedKw.keyword}} +{{testedKw.score}} <span class="message">{{testedKw.message}}</span></span>
             </div>
         </span>
-        <span class="bottom-content">
-            <input [disabled]="(timer |async) === 0" #keywordInput id="keyword-input" type="text"
+        <span #bottomContent class="bottom-content">
+            <input [disabled]="timeFinished" #keywordInput id="keyword-input" type="text"
                 (keyup.enter)="sendKeyword(keywordInput.value)"
                 placeholder="un mot qui pourrait être dans le synopsis.">
         </span>

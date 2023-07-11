@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, interval, timer } from 'rxjs';
+import { GameService } from 'src/app/services/game.service';
 import { ImageService } from 'src/app/services/image.service';
 import { TMDBApi } from 'src/tmdb.api';
 
@@ -18,8 +19,7 @@ export interface Keyword {
   styleUrls: ['./game.component.scss']
 })
 
-
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, AfterViewInit {
 
   subscriptions: Subscription[] = [];
   movieId: any = null;
@@ -29,43 +29,31 @@ export class GameComponent implements OnInit {
   currentKws: any[] = [];
   score: number = 0;
   posterPath: string = "";
-  TIMER: number = 120;
+  TIMER: number = 10;
   timer: BehaviorSubject<number>;
   timeProgress: number = 1;
   styledText: SafeHtml = ''
+  subscribeTimer: Observable<number> = new Observable<number>();
+  timeFinished: boolean = false;
 
+  @ViewChild('keywordInput', { static: true }) keywordInput!: ElementRef;
+  @ViewChild('progressBar', { static: true }) progressBar!: ElementRef;
+  @ViewChild('bar', { static: true }) bar!: ElementRef;
+  @ViewChild('bottomContent', { static: true }) bottomContent!: ElementRef;
+  @ViewChild('bottomContainer', { static: true }) bottomContainer!: ElementRef;
 
   constructor(
     private api: TMDBApi,
     private activatedRoute: ActivatedRoute,
     private imgService: ImageService,
-    private sanitizer: DomSanitizer
+    private gameService: GameService,
   ) {
     this.timer = new BehaviorSubject<number>(this.TIMER)
-  }
-
-  ngOnInit(): void {
-    const timerInterval = setInterval(() => {
-      this.timer.next(this.timer.getValue() - 1);
-      this.timeProgress = this.timer.getValue() / this.TIMER;
-      if (this.timer.getValue() === 0) clearInterval(timerInterval);
-    }, 1000)
-
-    this.movieId = this.activatedRoute.snapshot.paramMap.get('query');
-    this.subscriptions = [
-      this.api.getMovie(this.movieId).subscribe(res => {
-        this.film = res;
-        this.prepareKeywords(this.film.overview);
-        this.posterPath = this.imgService.getImgUrl(this.film.poster_path);
-        this.currentKws = this.keywords;
-      })
-    ]
   }
 
   prepareKeywords(overview: string) {
     let rawWordsArray: string[] = overview.split(/[ .,…!,?,;:)'’"(-]/);
     let wordsArray: string[] = rawWordsArray.filter(word => word.length > 3);
-
     for (let i = 0; i < wordsArray.length; i++) {
       let bonusPoints: number = wordsArray[i].length > 4 ? ((wordsArray[i].length - 4) * 0.1) : 0;
       bonusPoints = Math.round(bonusPoints * 10) / 10;
@@ -93,17 +81,14 @@ export class GameComponent implements OnInit {
     return message
   }
 
-
   sendKeyword(value: string) {
     const keywordsInput = document.querySelector('#keyword-input') as HTMLInputElement;
     let index: number = this.currentKws.findIndex((kw) => kw.keyword === value.toLocaleLowerCase())
     let indexUnaccented: number = this.currentKws.findIndex((kw) => this.removeAccents(kw.keyword) === this.removeAccents(value.toLocaleLowerCase()))
-
     if (index !== -1) {
       this.score += this.currentKws[index].score;
       this.testedKw = [...this.testedKw, this.currentKws[index]];
       this.currentKws.splice(index, 1)
-
     } else if (indexUnaccented !== -1) {
       // test without accents
       this.currentKws[indexUnaccented].score -= 0.5;
@@ -120,22 +105,62 @@ export class GameComponent implements OnInit {
     console.log('score : ' + this.score)
   }
 
-
   generateStyledText(inputPhrase: string,): string {
     let styledText = '';
     const words = inputPhrase.split(/[ .,…!,?,;:)'’"(-]/);
-
     words.forEach(word => {
       let spanClass: string = '';
       const testedkeyword = this.testedKw.find(kw => kw.keyword === (word).toLowerCase());
       const currentkeyword = this.currentKws.find(kw => kw.keyword === (word).toLowerCase());
       console.log(word + ' => testedkeyword: ' + testedkeyword + ' / currentkeyword: ' + currentkeyword)
 
-      testedkeyword !== undefined ? spanClass = 'find' : '' ;
-      currentkeyword !== undefined ? spanClass = 'findable' : '' ;
+      testedkeyword !== undefined ? spanClass = 'find' : '';
+      currentkeyword !== undefined ? spanClass = 'findable' : '';
       styledText += `<span class="${spanClass} syn-word">${word}</span> `;
     })
 
     return styledText.trim();
+  }
+
+  timerLaunch(timerDuration: number) {
+    const interval: number = 1000;
+
+    this.bar.nativeElement.animate([
+      { transform: 'translateX(-' + 100 + '%)' },
+    ], {
+      duration: timerDuration * interval,
+    });
+
+    const timerInterval = setInterval(() => {
+      this.timer.next(this.timer.getValue() - 1);
+      if (this.timer.getValue() < timerDuration / 4) {
+        this.bar.nativeElement.style.backgroundColor = 'red';
+      }
+      this.timeProgress = this.timer.getValue() / timerDuration;
+      if (this.timer.getValue() === 0) {
+        clearInterval(timerInterval);
+        this.bottomContainer.nativeElement.style.bottom = '-' + this.bottomContent.nativeElement.offsetHeight + 'px';
+        this.progressBar.nativeElement.style.display = 'none'
+        this.timeFinished = true;
+      };
+    }, interval)
+  }
+
+  ngOnInit(): void {
+    this.timerLaunch(this.TIMER);
+    console.log(this.gameService.getDay());
+    this.movieId = this.activatedRoute.snapshot.paramMap.get('query');
+    this.subscriptions = [
+      this.api.getMovie(this.movieId).subscribe(res => {
+        this.film = res;
+        this.prepareKeywords(this.film.overview);
+        this.posterPath = this.imgService.getImgUrl(this.film.poster_path);
+        this.currentKws = this.keywords;
+      })
+    ]
+  }
+
+  ngAfterViewInit(): void {
+    this.keywordInput.nativeElement.focus()
   }
 }
