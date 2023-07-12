@@ -21,6 +21,7 @@ export interface Keyword {
 
 export class GameComponent implements OnInit, AfterViewInit {
 
+
   subscriptions: Subscription[] = [];
   movieId: any = null;
   film: any;
@@ -29,12 +30,14 @@ export class GameComponent implements OnInit, AfterViewInit {
   currentKws: any[] = [];
   score: number = 0;
   posterPath: string = "";
-  TIMER: number = 10;
+  TIMER: number = 30;
   timer: BehaviorSubject<number>;
   timeProgress: number = 1;
   styledText: SafeHtml = ''
-  subscribeTimer: Observable<number> = new Observable<number>();
+  // subscribeTimer: Observable<number> = new Observable<number>();
+  kwFindingScore:BehaviorSubject<number>;
   timeFinished: boolean = false;
+ 
 
   @ViewChild('keywordInput', { static: true }) keywordInput!: ElementRef;
   @ViewChild('progressBar', { static: true }) progressBar!: ElementRef;
@@ -48,7 +51,8 @@ export class GameComponent implements OnInit, AfterViewInit {
     private imgService: ImageService,
     private gameService: GameService,
   ) {
-    this.timer = new BehaviorSubject<number>(this.TIMER)
+    this.timer = new BehaviorSubject<number>(this.TIMER);
+    this.kwFindingScore = new BehaviorSubject<number>(0);
   }
 
   prepareKeywords(overview: string) {
@@ -59,7 +63,8 @@ export class GameComponent implements OnInit, AfterViewInit {
       bonusPoints = Math.round(bonusPoints * 10) / 10;
       let keyword: Keyword = {
         'keyword': wordsArray[i].toLocaleLowerCase(),
-        'score': 2 + bonusPoints
+        'score': 2 + bonusPoints,
+        'color': 'findable'
       }
       const wordsIndex: number = this.keywords.findIndex((kw) => kw.keyword === wordsArray[i].toLocaleLowerCase());
       // if the keyword is not in the list.
@@ -87,8 +92,11 @@ export class GameComponent implements OnInit, AfterViewInit {
     let indexUnaccented: number = this.currentKws.findIndex((kw) => this.removeAccents(kw.keyword) === this.removeAccents(value.toLocaleLowerCase()))
     if (index !== -1) {
       this.score += this.currentKws[index].score;
-      this.testedKw = [...this.testedKw, this.currentKws[index]];
+      let findedKeyword: Keyword = this.currentKws[index];
+      findedKeyword.color = 'find';
+      this.testedKw = [...this.testedKw, findedKeyword];
       this.currentKws.splice(index, 1)
+      this.kwFindingScore.next(this.kwFindingScore.getValue() + 1);
     } else if (indexUnaccented !== -1) {
       // test without accents
       this.currentKws[indexUnaccented].score -= 0.5;
@@ -105,21 +113,24 @@ export class GameComponent implements OnInit, AfterViewInit {
     console.log('score : ' + this.score)
   }
 
-  generateStyledText(inputPhrase: string,): string {
-    let styledText = '';
-    const words = inputPhrase.split(/[ .,…!,?,;:)'’"(-]/);
-    words.forEach(word => {
-      let spanClass: string = '';
-      const testedkeyword = this.testedKw.find(kw => kw.keyword === (word).toLowerCase());
-      const currentkeyword = this.currentKws.find(kw => kw.keyword === (word).toLowerCase());
-      console.log(word + ' => testedkeyword: ' + testedkeyword + ' / currentkeyword: ' + currentkeyword)
+  generateStyledText(inputPhrase: string): string {
+    let styledText = inputPhrase;
+    styledText = this.remplaceByKeywords(styledText, this.testedKw);
+    styledText = this.remplaceByKeywords(styledText, this.currentKws);
+    return styledText;
+  }
 
-      testedkeyword !== undefined ? spanClass = 'find' : '';
-      currentkeyword !== undefined ? spanClass = 'findable' : '';
-      styledText += `<span class="${spanClass} syn-word">${word}</span> `;
+  remplaceByKeywords(inputPhrase: string, keywords: Keyword[]) {
+    const inputPhraseLC: string = inputPhrase.toLocaleLowerCase();
+    keywords.forEach(kw => {
+      if (inputPhrase.includes(kw.keyword)) {
+        inputPhrase = inputPhrase.replace(kw.keyword, `<span class="${kw.color}">${kw.keyword}</span>`)
+      } else if (inputPhraseLC.includes(kw.keyword)) {
+        const kwS: string = kw.keyword.charAt(0).toUpperCase() + kw.keyword.slice(1);
+        inputPhrase = inputPhrase.replace(kwS, `<span class="${kw.color}">${(kwS)}</span>`)
+      }
     })
-
-    return styledText.trim();
+    return inputPhrase
   }
 
   timerLaunch(timerDuration: number) {

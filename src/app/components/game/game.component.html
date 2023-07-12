@@ -2,6 +2,7 @@
     <div class="content">
         <div class="top-cont">
             <p class="title-card">{{film.title | titlecase}}</p>
+            <p>mot(s) decouvert(s) : 2 / 39</p>
             <div class="time">
                 <span #progressBar class="progress-bar">
                     <div #bar class="bar"></div>
@@ -16,7 +17,11 @@
         <div class="background" *ngIf="timeFinished">
             <div class="bg-content">
                 <div class="synopsis">
-                    <h2>score : {{score}}</h2>
+                    <div class="header">
+                        <h3>{{film.title | titlecase}}</h3>
+                        <h2>score : {{score}}</h2>
+                        <p>mot(s) decouvert(s) : {{ kwFindingScore | async }} / {{keywords.length}}</p>
+                    </div>
                     <p [innerHTML]="generateStyledText(film.overview)"></p>
                 </div>
             </div>

@@ -12,14 +12,14 @@ export class GameService {
   private startingDay: number = this.staringDate.getDay();
   private nowDay: number = this.now.getDay();
 
-  private films: number[] = [13, 120, 603, 2899 ];
+  private films: number[] = [13, 120, 9354, 603, 2899];
 
 
   getDay(): number {
     return this.nowDay - this.startingDay;
   }
 
-  getFilmOfDay(){
+  getFilmOfDay() {
     return this.films[this.getDay()];
   }
 

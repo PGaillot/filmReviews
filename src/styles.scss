@@ -137,24 +137,19 @@ input {
 }
 
 .accent-error{
-    color: $primary !important;
+    background-color: rgba(243, 96, 11, 0.3);
+    color: $black-500 !important;
 }
 
 
 .find{
-    background-color: rgba(243, 201, 11, 0.658);
+    background-color: rgba(243, 201, 11, 0.3);
     color: $black-500 !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     padding: 1px 2px;
 }
 
 .findable{
-    color: $dark-gray-500 !important;
-    font-weight: 600 !important;
-}
-
-.syn-word{
-    color:$gray-200;
-    font-weight: 400;
-    font-size: 16px;
+    color: $black-500 !important;
+    font-weight: 500 !important;
 }
