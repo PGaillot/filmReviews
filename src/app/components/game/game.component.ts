@@ -27,7 +27,7 @@ export class GameComponent implements OnInit, AfterViewInit {
   film: any;
   keywords: Keyword[] = [];
   testedKw: Keyword[] = [];
-  currentKws: any[] = [];
+  currentKws: Keyword[] = [];
   score: number = 0;
   posterPath: string = "";
   TIMER: number = 30;
@@ -166,7 +166,7 @@ export class GameComponent implements OnInit, AfterViewInit {
         this.film = res;
         this.prepareKeywords(this.film.overview);
         this.posterPath = this.imgService.getImgUrl(this.film.poster_path);
-        this.currentKws = this.keywords;
+        this.currentKws = this.keywords.slice();
       })
     ]
   }

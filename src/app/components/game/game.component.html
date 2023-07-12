@@ -2,7 +2,7 @@
     <div class="content">
         <div class="top-cont">
             <p class="title-card">{{film.title | titlecase}}</p>
-            <p>mot(s) decouvert(s) : 2 / 39</p>
+            <p class="words-find">mot(s) decouvert(s) : {{ kwFindingScore | async }} / {{keywords.length}}</p>
             <div class="time">
                 <span #progressBar class="progress-bar">
                     <div #bar class="bar"></div>
@@ -18,10 +18,11 @@
             <div class="bg-content">
                 <div class="synopsis">
                     <div class="header">
-                        <h3>{{film.title | titlecase}}</h3>
+                        <h3>{{film.title}}</h3>
                         <h2>score : {{score}}</h2>
                         <p>mot(s) decouvert(s) : {{ kwFindingScore | async }} / {{keywords.length}}</p>
                     </div>
+                    <div class="divider"></div>
                     <p [innerHTML]="generateStyledText(film.overview)"></p>
                 </div>
             </div>

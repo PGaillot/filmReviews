@@ -54,11 +54,11 @@ input {
         padding: 0 2em;
         
         .synopsis {
-            max-height: 20em;
+            max-height: 24em;
             overflow: auto;
             border-radius: 1em;
             background-color: $white;
-            padding: 1em;
+            padding: 2em 1em;
             color:$gray-200;
             font-weight: 500;
             font-size: 16px;
@@ -70,6 +70,11 @@ input {
                     color: #8D6BF3;
                     padding: 0.1em 0;
                 }
+            }
+
+            .divider{
+                margin-bottom: 1em !important;
+                padding: 0 1em;
             }
         }
     }
@@ -97,14 +102,20 @@ input {
     height: auto;
     top: 0;
     left: 0;
+    color: $white;
+    text-align: center;
 
     .title-card {
         background-color: $black-500;
         font-size: 32px;
         font-weight: 800;
         text-align: center;
-        padding: 1em 2em;
+        padding: 1em 2em 0.5em 2em;
         color: $white;
+    }
+    
+    .words-find{
+        background-color:$black-500;
     }
 
     .time {
@@ -172,6 +183,8 @@ input {
         position: relative;
 
         .btn-share {
+            user-select: none;
+            cursor: pointer;
             position: absolute;
             display: flex;
             flex-direction: row;
@@ -188,8 +201,12 @@ input {
             font-size: 20px;
             transition: opacity ease-in 300ms 200ms;
             box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.40);
-            background-color: #8D6BF3;
+            background-color: $primary;
             color: $white;
+
+            &:active{
+                background-color: $primary-400;
+            }
         }
 
         .btn-share-hiden {

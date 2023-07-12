@@ -1,15 +1,63 @@
 $black-500: #323031;
 $black-400: #3D3B3C;
-$gray-200:#7F7979;
-$gray-100:#C1BDB3;
-$dark-gray-500:#5F5B6B;
+$black-300: darken($black-400, 10%);
+$black-200: darken($black-400, 20%);
+$black-100: darken($black-400, 30%);
+
+$gray-500: #5F5B6B;
+$gray-400: #7F7979;
+$gray-300: lighten($gray-400, 10%);
+$gray-200: lighten($gray-400, 20%);
+$gray-100: lighten($gray-400, 30%);
+
 $white: #fafafa;
+$dark-gray-500:#5F5B6B;
 
-$primary:#FA6258;
-$success:#2cf55e;
+$primary: #8D6BF3;
+$success: #2cf55e;
+$danger: #FF0000;
+$accent: #FFC107;
 
-// E94735
-// FAE61B
-// F0ED90
-// 1DB1BC
-// 124D4C
+// Déclinaisons pour $primary
+$primary-900: darken($primary, 10%);
+$primary-800: darken($primary, 20%);
+$primary-700: darken($primary, 30%);
+$primary-600: darken($primary, 40%);
+$primary-500: $primary; // Couleur principale
+$primary-400: lighten($primary, 10%);
+$primary-300: lighten($primary, 20%);
+$primary-200: lighten($primary, 30%);
+$primary-100: lighten($primary, 40%);
+
+// Déclinaisons pour $success
+$success-900: darken($success, 10%);
+$success-800: darken($success, 20%);
+$success-700: darken($success, 30%);
+$success-600: darken($success, 40%);
+$success-500: $success; // Couleur principale
+$success-400: lighten($success, 10%);
+$success-300: lighten($success, 20%);
+$success-200: lighten($success, 30%);
+$success-100: lighten($success, 40%);
+
+// Déclinaisons pour $danger
+$danger-900: darken($danger, 10%);
+$danger-800: darken($danger, 20%);
+$danger-700: darken($danger, 30%);
+$danger-600: darken($danger, 40%);
+$danger-500: $danger; // Couleur principale
+$danger-400: lighten($danger, 10%);
+$danger-300: lighten($danger, 20%);
+$danger-200: lighten($danger, 30%);
+$danger-100: lighten($danger, 40%);
+
+// Déclinaisons pour $accent
+$accent-900: darken($accent, 10%);
+$accent-800: darken($accent, 20%);
+$accent-700: darken($accent, 30%);
+$accent-600: darken($accent, 40%);
+$accent-500: $accent; // Couleur principale
+$accent-400: lighten($accent, 10%);
+$accent-300: lighten($accent, 20%);
+$accent-200: lighten($accent, 30%);
+$accent-100: lighten($accent, 40%);
