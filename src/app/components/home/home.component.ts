@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { GameService } from 'src/app/services/game.service';
 import { Movie } from 'src/models/movie.model';
 // import { TMDBApi } from 'src/tmdb.api';
 
@@ -9,39 +10,25 @@ import { Movie } from 'src/models/movie.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, OnInit {
 
   constructor(
-    // private tmdbApi: TMDBApi,
-    private router: Router
+    private router: Router,
+    private gameService: GameService,
   ) { }
 
-  filmIndex: number = 0;
-  subscriptions: Subscription[] = [];
-  films: number[] = [13, 120, 603, 2899 ];
-  randomFimlIndex: number = 0;
   isLoaded: boolean = false;
 
 
   genreSelected(e: any) {
-    console.log(e)
-
+    console.log(e);
   }
 
   ngOnInit(): void {
-    this.randomFimlIndex = Math.floor(Math.random() * this.films.length);
-    console.log(this.randomFimlIndex)
-    this.subscriptions = [
-    ]
-  }
+    setTimeout(() => {
+      this.router.navigateByUrl('game/' + this.gameService.getFilmOfDay());
+    }, 1000)
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe())
-  }
-
-
-  onKey(value: string) {
-    this.router.navigateByUrl('research/' + value );
   }
 
 }
