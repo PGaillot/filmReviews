@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -15,11 +16,16 @@ export class HomeComponent implements OnInit {
     private gameService: GameService,
   ) { }
 
+  subscriptions:Subscription[] = [];
 
   ngOnInit(): void {
     setTimeout(() => {
       this.router.navigateByUrl('game/' + this.gameService.getFilmOfDay());
     }, 1000)
+
+    this.subscriptions = [
+      this.gameService.getFavorites()
+    ]
 
   }
 

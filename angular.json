@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "filmReviews"
+  "defaultProject": "filmReviews",
+  "cli": {
+    "analytics": "96e55809-8bb3-4411-b61b-19d3d72a6068"
+  }
 }

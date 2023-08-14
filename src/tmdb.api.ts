@@ -5,6 +5,8 @@ import { API_KEY, environment } from './environments/environment';
 import { Movie } from './models/movie.model';
 import * as formatData from 'src/helpers/formatData.helper';
 import { MovieDetails } from './models/movieDetails.model';
+import { FavoriteHttpResult } from './models/favorite.model';
+import { convertDataToMovie } from 'src/helpers/formatData.helper';
 
 @Injectable({ providedIn: 'root' })
 export class TMDBApi {
@@ -114,4 +116,21 @@ export class TMDBApi {
         return this.http.get(environment.api.configuration)
     }
 
+    getCollection(page: number = 1): Observable<FavoriteHttpResult> {
+        this.params = this.params
+            .set('sort_by', 'created_at.asc')
+            .set('page', page);
+        return this.http.get(environment.api.favorite.TMDB_FAV_MOVIE_URL, { params: this.params }).pipe(
+            map((res: any) => {
+                const favoriteResult: FavoriteHttpResult = {
+                    films: [...res.results],
+                    page: res.page,
+                    total_pages: res.total_pages,
+                    total_results: res.total_results,
+                };
+                return favoriteResult;
+            }
+            )
+        )
+    }
 }

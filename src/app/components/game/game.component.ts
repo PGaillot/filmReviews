@@ -30,7 +30,7 @@ export class GameComponent implements OnInit, AfterViewInit {
   currentKws: Keyword[] = [];
   score: number = 0;
   posterPath: string = "";
-  TIMER: number = 30;
+  TIMER: number = 120;
   timer: BehaviorSubject<number>;
   timeProgress: number = 1;
   styledText: SafeHtml = ''
@@ -161,6 +161,8 @@ export class GameComponent implements OnInit, AfterViewInit {
     this.timerLaunch(this.TIMER);
     console.log(this.gameService.getDay());
     this.movieId = this.activatedRoute.snapshot.paramMap.get('query');
+    this.gameService.getFavorites();
+
     this.subscriptions = [
       this.api.getMovie(this.movieId).subscribe(res => {
         this.film = res;

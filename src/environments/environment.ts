@@ -18,6 +18,9 @@ export const environment = {
     },
     discover: {
       TMDB_DISC_MOVIE_URL: API_URL + '/discover/movie'
+    },
+    favorite:{
+      TMDB_FAV_MOVIE_URL: API_URL + '/account/20042620/favorite/movies'
     }
   },
 };

@@ -6,12 +6,17 @@ import { HomeComponent } from './components/home/home.component';
 import { MovieResearchListComponent } from './components/movie-research-list/movie-research-list.component';
 import { FilmDetailsComponent } from './components/film-details/film-details.component';
 import { GameComponent } from './components/game/game.component';
+import { CollectionComponent } from './components/collection/collection.component';
 
 const routes: Routes = [
   {
-    path:'home',
-    component: HomeComponent
-  },
+    path: '/collection',
+    component: CollectionComponent
+  }, 
+  // {
+  //   path: 'home',
+  //   component: HomeComponent
+  // },
   {
     path: 'session/:genreId',
     component: SortSessionComponent
@@ -33,8 +38,8 @@ const routes: Routes = [
     component: FilmDetailsComponent
   },
   {
-    path:'**',
-    redirectTo:'home'
+    path: '**',
+    redirectTo: 'home'
   },
 ];
 
@@ -43,4 +48,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }
