@@ -17,7 +17,7 @@ export class GameService {
   private startingDay: number = this.staringDate.getDay();
   private nowDay: number = this.now.getDay();
 
-  private films: number[] = [13, 2899, 120, 9354, 603];
+  private films: number[] = [0,0, 13, 2899, 120, 9354, 603];
 
 
   getDay(): number {

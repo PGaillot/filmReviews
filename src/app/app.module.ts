@@ -12,6 +12,8 @@ import { SortSessionComponent } from './components/sort-session/sort-session.com
 import { FilmDetailsComponent } from './components/film-details/film-details.component';
 import { MovieResearchListComponent } from './components/movie-research-list/movie-research-list.component';
 import { GameComponent } from './components/game/game.component';
+import { VhsCollectionComponent } from './components/vhs-collection/vhs-collection.component';
+import { VhsSpineComponent } from './components/vhs-spine/vhs-spine.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { GameComponent } from './components/game/game.component';
     FilmDetailsComponent,
     MovieResearchListComponent,
     GameComponent,
+    VhsCollectionComponent,
+    VhsSpineComponent,
   ],
   imports: [
     BrowserModule,

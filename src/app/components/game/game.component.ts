@@ -161,7 +161,7 @@ export class GameComponent implements OnInit, AfterViewInit {
     this.timerLaunch(this.TIMER);
     console.log(this.gameService.getDay());
     this.movieId = this.activatedRoute.snapshot.paramMap.get('query');
-    this.gameService.getFavorites();
+    // this.gameService.getFavorites();
 
     this.subscriptions = [
       this.api.getMovie(this.movieId).subscribe(res => {

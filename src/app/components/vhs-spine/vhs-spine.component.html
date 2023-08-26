@@ -1,0 +1,92 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=MuseoModerno:wght@200;700&family=Pathway+Extreme:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&family=Permanent+Marker&family=Share:wght@700&display=swap"
+  rel="stylesheet">
+
+<div [ngClass]="'vhs-t' + randomVhsType">
+  <div class="reflect"></div>
+  <svg viewBox='0 0 56 415' class="noise">
+    <filter id='noiseFilter'>
+      <feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='6' stitchTiles='stitch' />
+    </filter>
+    <rect width='100%' height='100%' filter='url(#noiseFilter)' />
+  </svg>
+  <div class="bottom-reflect"></div>
+
+  <div class="sticker" [ngStyle]="{
+      'top': getRandomNumber(30, 50) + '%',
+      'transform': 'rotate(' + getRandomNumber(-87, -93) +'deg)'
+    }">
+    <div class="title"
+      [ngStyle]="{'font-size': movie.title.length < 10 ? '16px' : '12px', 'line-height': movie.title.length < 10 ? '16px' : '12px'}">
+      {{movie.title}}
+    </div>
+    <div class="border">
+      <div class="lines">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="side-cover">
+    <div class="top-image-decor"></div>
+    <div class="top-image"></div>
+    <div class="vhs-model-name">{{vhsModelNames[randomVhsType]}}</div>
+    <div class="center-img-decor"></div>
+    <div class="center-img"></div>
+    <div class="brand-model">{{brandModels[randomVhsType]}}</div>
+    <div class="bottom-text">{{bottomTexts[randomVhsType]}}</div>
+    <div class="bottom-img"></div>
+  </div>
+</div>
+
+<div class="spine-back">
+
+  <svg viewBox='0 0 56 415' class="noise">
+    <filter id='noiseFilter'>
+      <feTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch' />
+    </filter>
+    <rect width='100%' height='100%' filter='url(#noiseFilter)' />
+  </svg>
+
+  <!-- <svg viewBox='0 0 7.5 55.2' class="dust">
+    <filter id='noiseFilter'>
+      <feTurbulence type='fractalNoise' baseFrequency='6' numOctaves='6' stitchTiles='stitch' />
+    </filter>
+    <rect width='100%' height='100%' filter='url(#noiseFilter)' />
+  </svg> -->
+  
+  <div class="sticker">
+    <div class="top-part"></div>
+    <div class="content-part">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="bottom-part"></div>
+
+    <div class="title"
+    [ngStyle]="{'font-size': movie.title.length < 10 ? '16px' : movie.title.length < 25 ?  '12px' : '10px', 'line-height': movie.title.length < 25 ? '16px' : movie.title.length < 20 ?  '12px' : '10px'}">
+    {{movie.title}}</div>
+  </div>
+
+  <div class="cassette-gradient-sm gradient-top"></div>
+  <div class="cassette-gradient-sm gradient-bottom"></div>
+  <div class="border-custom-r"></div>
+  <div class="border-custom-l"></div>
+
+  <div class="center-line">
+    <div class="line-1"></div>
+    <div class="line-2"></div>
+  </div>
+
+
+
+  <div class="insert-top"></div>
+  <div class="insert-bottom"></div>
+
+
+</div>

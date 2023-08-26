@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     }, 1000)
 
     this.subscriptions = [
-      this.gameService.getFavorites()
+      // this.gameService.getFavorites()
     ]
 
   }
