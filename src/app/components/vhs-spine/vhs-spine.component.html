@@ -5,7 +5,16 @@
   rel="stylesheet">
 
 <ng-container *ngIf="randomVhsSide === 'front'; else backSideTemplate">
+
   <div [ngClass]="'vhs-t' + randomVhsType">
+
+    <div class="mh">
+      <div class="mhe tl"></div>
+      <div class="mhe tr"></div>
+      <div class="mhe br"></div>
+      <div class="mhe bl"></div>
+    </div>
+
     <div class="reflect"></div>
     <svg viewBox='0 0 56 415' class="noise">
       <filter id='noiseFilter'>
@@ -14,7 +23,7 @@
       <rect width='100%' height='100%' filter='url(#noiseFilter)' />
     </svg>
     <div class="bottom-reflect"></div>
-  
+
     <div class="sticker" [ngStyle]="{
         'top': getRandomNumber(30, 50) + '%',
         'transform': 'rotate(' + getRandomNumber(-87, -93) +'deg)'
@@ -30,8 +39,8 @@
         </div>
       </div>
     </div>
-  
-  
+
+
     <div class="side-cover">
       <div class="top-image-decor"></div>
       <div class="top-image"></div>
@@ -56,15 +65,16 @@
       </filter>
       <rect width='100%' height='100%' filter='url(#noiseFilter)' />
     </svg>
-  
-    <!-- <svg viewBox='0 0 7.5 55.2' class="dust">
-      <filter id='noiseFilter'>
-        <feTurbulence type='fractalNoise' baseFrequency='6' numOctaves='6' stitchTiles='stitch' />
-      </filter>
-      <rect width='100%' height='100%' filter='url(#noiseFilter)' />
-    </svg> -->
-    
+
+
+
     <div class="sticker">
+      <svg viewBox='0 0 7.5 55.2' class="dust">
+        <filter id='noiseFilter'>
+          <feTurbulence type='fractalNoise' baseFrequency='6' numOctaves='6' stitchTiles='stitch' />
+        </filter>
+        <rect width='100%' height='100%' filter='url(#noiseFilter)' />
+      </svg>
       <div class="top-part"></div>
       <div class="content-part">
         <div class="line"></div>
@@ -72,27 +82,27 @@
         <div class="line"></div>
       </div>
       <div class="bottom-part"></div>
-  
+
       <div class="title"
-      [ngStyle]="{'font-size': movie.title.length < 10 ? '16px' : movie.title.length < 25 ?  '12px' : '10px', 'line-height': movie.title.length < 25 ? '16px' : movie.title.length < 20 ?  '12px' : '10px'}">
-      {{movie.title}}</div>
+        [ngStyle]="{'font-size': movie.title.length < 10 ? '16px' : movie.title.length < 25 ?  '12px' : '10px', 'line-height': movie.title.length < 25 ? '16px' : movie.title.length < 20 ?  '12px' : '10px'}">
+        {{movie.title}}</div>
     </div>
-  
+
     <div class="cassette-gradient-sm gradient-top"></div>
     <div class="cassette-gradient-sm gradient-bottom"></div>
     <div class="border-custom-r"></div>
     <div class="border-custom-l"></div>
-  
+
     <div class="center-line">
       <div class="line-1"></div>
       <div class="line-2"></div>
     </div>
-  
-  
-  
+
+
+
     <div class="insert-top"></div>
     <div class="insert-bottom"></div>
-  
-  
+
+
   </div>
 </ng-template>

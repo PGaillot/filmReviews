@@ -40,10 +40,11 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
 
 %vhs-effect {
 
-    transition-property: transform;
+    transition-property: transform filter;
     transition-duration: 200ms;
     transition-delay: 50ms;
     transition-timing-function: ease-in;
+    filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0));
 
     position: relative;
     width: $spine-width;
@@ -92,6 +93,7 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
         background: $sticker-bg;
 
         transform: rotate(90deg);
+        z-index: 1;
 
         .title {
             position: absolute;
@@ -130,7 +132,7 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
     background: $vhs-t1-black;
     height: 100%;
     width: 100%;
-    z-index: -1;
+    z-index: 0;
     font-family: 'Pathway Extreme', sans-serif;
 
 
@@ -194,11 +196,12 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
 
 %vhs-spine-hover {
     @extend %vhs-effect;
-    transform: matrix(1.1, 0, 0, 1.1, 0, 0); 
-    background-color: #622074;
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0);
     z-index: 3;
+    filter: drop-shadow(-16px 0 32px rgba(0, 0, 0, 0.5));
 
-    transition-property: transform;
+
+    transition-property: transform filter;
     transition-duration: 200ms;
     transition-delay: 50ms;
     transition-timing-function: ease-out;
@@ -209,6 +212,34 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
 
 }
 
+// .mh{
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     display: grid;
+//     grid-template-columns: repeat(2, 1fr);
+//     grid-template-rows: repeat(2, 1fr);
+//     height: 100%;
+//     width: 100%;
+
+//     .mhe{
+//         height: 100%;
+//         width: 100%;
+//     }
+
+//     .tl{
+//         background: #F228EA;
+//     }
+//     .tr{
+//         background: #78e64d;
+//     }
+//     .br{
+//         background: #f22828;
+//     }
+//     .bl{
+//         background: #fffb18;
+//     }
+// }
 
 // ---------------------------------------------------------------------------------
 
@@ -222,7 +253,7 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
     overflow: hidden;
     border: 1px solid #747474;
     border-radius: 2px;
-    
+
     transition-property: transform;
     transition-duration: 200ms;
     transition-delay: 50ms;
@@ -248,6 +279,16 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
         flex-direction: column;
         border-radius: 2px;
         overflow: hidden;
+
+        .dust{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            mix-blend-mode: color-burn;
+            opacity: 0.5;
+        }
 
         .top-part {
             background: red;
@@ -395,7 +436,7 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
 
 %vhs-back-hover {
     @extend %spine-back;
-    transform: matrix(1.1, 0, 0, 1.1, 0, 0); 
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0);
     z-index: 3;
 
     transition-property: transform;
