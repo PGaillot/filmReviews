@@ -1,0 +1,98 @@
+@import '../vhs-spline-variables.scss';
+
+/**
+
+    VHS TYPE 2
+
+**/
+
+.vhs-t2 {
+    @extend %vhs-effect;
+    .side-cover {
+        @extend %default-spine;
+        background: $vhs-t2-black;
+        font-family: 'MuseoModerno', cursive;
+
+        .vhs-model-name {
+            right: -72%;
+            top: 100px;
+            color: $vhs-t2-white;
+            font-size: 16px;
+            line-height: 16px;
+        }
+
+        .top-image {
+            background: $vhs-t2-gradient-hor;
+            height: 120px;
+            width: 28px;
+            @extend %vertical-center;
+
+        }
+
+        .brand-model {
+            color: $vhs-t2-white;
+            font-family: 'Share', cursive;
+            border: 1px solid $vhs-t2-white;
+            bottom: 108px;
+            @extend %vertical-center;
+            font-size: 20px;
+            line-height: 14px;
+            border-radius: 4px;
+            width: auto;
+        }
+
+        .bottom-text {
+            bottom: 94px;
+            color: $vhs-t2-white;
+            font-size: 10px;
+            font-weight: 200;
+        }
+
+        .center-img {
+            top: 168px;
+            background: $vhs-t2-gradient;
+            height: 100px;
+        }
+
+        .bottom-img {
+            @extend %vertical-center;
+            background: $vhs-t2-gradient-hor;
+            height: 24px;
+            width: 28px
+        }
+    }
+}
+
+
+
+
+.vhs-back-t2{
+    @extend %spine-back;
+    .sticker {
+
+        .top-part {
+            background: $vhs-t2-gradient-hor;
+        }
+
+        .content-part{
+            flex-grow: 2;
+            border-left:  rgba(231, 58, 78, 1) solid 2px;
+            border-right: rgba(96, 42, 153, 1) solid 2px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 8px 0;
+
+            .line {
+                @extend %line;
+                mix-blend-mode: overlay;           
+             }
+    
+        }
+        .bottom-part{
+            height: 16px;
+            background: $vhs-t2-gradient-hor;
+            transform: rotate(180deg);
+        }
+    }
+ }

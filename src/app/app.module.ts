@@ -14,6 +14,7 @@ import { MovieResearchListComponent } from './components/movie-research-list/mov
 import { GameComponent } from './components/game/game.component';
 import { VhsCollectionComponent } from './components/vhs-collection/vhs-collection.component';
 import { VhsSpineComponent } from './components/vhs-spine/vhs-spine.component';
+import { VHSComponent } from './components/vhs/vhs.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { VhsSpineComponent } from './components/vhs-spine/vhs-spine.component';
     GameComponent,
     VhsCollectionComponent,
     VhsSpineComponent,
+    VHSComponent,
   ],
   imports: [
     BrowserModule,

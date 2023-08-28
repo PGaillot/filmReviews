@@ -1,18 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/models/movie.model';
-import { VhsSide } from './vhs-side.enum';
 
 @Component({
-  selector: 'app-vhs-spine',
-  templateUrl: './vhs-spine.component.html',
-  styleUrls: ['./vhs-spine.component.scss', '../vhs-spine/style-templates/t1.scss',  '../vhs-spine/style-templates/t2.scss', '../vhs-spine/style-templates/t3.scss']
+  selector: 'app-vhs',
+  templateUrl: './vhs.component.html',
+  styleUrls: ['./vhs.component.scss']
 })
-export class VhsSpineComponent implements OnInit {
-  
+export class VHSComponent implements OnInit {
+
   constructor() { }
   randomVhsType: number = 1;
-  randomVhsSide: VhsSide = VhsSide.Front;
-  
+
   emptyMovie: Movie = {
     id: 0,
     title: '',
@@ -40,14 +38,14 @@ export class VhsSpineComponent implements OnInit {
     'High Quality',
   ]
 
-  brandModels:string[] = [
+  brandModels: string[] = [
     '',
     'MEGA VISION',
     'HQ',
     'E-240',
   ]
 
-  bottomTexts:string[] = [
+  bottomTexts: string[] = [
     '',
     'VHS',
     'colors',
@@ -60,8 +58,9 @@ export class VhsSpineComponent implements OnInit {
 
   ngOnInit(): void {
     this.randomVhsType = this.getRandomNumber(1, 3);
-    this.randomVhsSide = Math.random() < 0.5 ? VhsSide.Front : VhsSide.Back;
-
+    console.log(this.randomVhsType)
   }
 
 }
+
+

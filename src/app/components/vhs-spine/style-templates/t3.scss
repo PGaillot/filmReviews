@@ -1,0 +1,127 @@
+@import '../vhs-spline-variables.scss';
+
+/**
+
+    VHS TYPE 3
+
+**/
+
+.vhs-t3 {
+    @extend %vhs-effect;
+
+    .side-cover {
+        @extend %default-spine;
+        background: $vhs-t3-black;
+        font-family: 'Bruno Ace SC', cursive;
+
+        .vhs-model-name {
+            position: relative;
+            left: 0;
+            transform: rotate(0deg);
+            top: 16px;
+            color: $vhs-t3-gold;
+            font-size: 8px;
+            line-height: 8px;
+            font-weight: 200;
+            text-align: center;
+            white-space: normal;
+            width: 100%;
+        }
+
+        .top-image {
+            background: $vhs-t3-gradient;
+            height: 16px;
+            width: 72px;
+            @extend %vertical-center;
+            top: 46px;
+        }
+
+        .top-image-decor {
+            background: $vhs-t3-gradient;
+            height: 4px;
+            width: 72px;
+            @extend %vertical-center;
+            top: 40px;
+        }
+
+        .brand-model {
+            color: $vhs-t3-white;
+            font-family: 'Share', cursive;
+            border: none;
+            top: 64px;
+            bottom: none;
+            @extend %vertical-center;
+            font-size: 16px;
+            line-height: 14px;
+            width: 100%;
+            color: $vhs-t3-gold;
+        }
+
+        .bottom-text {
+            bottom: 16px;
+            color: $vhs-t3-gold;
+            font-size: 12px;
+            font-weight: 200;
+        }
+
+        .center-img {
+            top: 280px;
+            background: $vhs-t3-gradient;
+            height: 8px;
+            width: 120px;
+            transform: rotate(-15deg);
+        }
+
+        .center-img-decor {
+            position: absolute;
+            top: 276px;
+            background: $vhs-t3-gradient;
+            height: 2px;
+            width: 90px;
+            transform: rotate(-15deg);
+
+        }
+
+        .bottom-img {
+            @extend %vertical-center;
+            display: none;
+            background: $vhs-t3-gradient-hor;
+            height: 24px;
+            width: 28px
+        }
+    }
+}
+
+
+
+.vhs-back-t3 {
+    @extend %spine-back;
+
+    .sticker {
+
+        .top-part {
+            background: $vhs-t3-gradient-hor;
+        }
+
+        .content-part{
+            flex-grow: 2;
+            border-left: #EBA400 solid 2px;
+            border-right: #EBA400 solid 2px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 8px 0;
+
+            .line {
+                @extend %line;
+                mix-blend-mode: overlay;           
+             }
+    
+        }
+        .bottom-part{
+            height: 16px;
+            background: $vhs-t3-gradient-hor;
+            transform: rotate(180deg);
+        }
+    }
+}

@@ -1,0 +1,46 @@
+@import '../vhs-spline-variables.scss';
+
+/**
+
+    VHS TYPE 1
+
+**/
+
+.vhs-t1 {
+    @extend %vhs-effect;
+
+    .side-cover {
+        @extend %default-spine;
+    }
+}
+
+.vhs-back-t1{
+   @extend %spine-back;
+   .sticker {
+
+    .top-part {
+        background: $vhs-t1-gradient;
+    }
+
+    .content-part{
+        flex-grow: 2;
+        border-left: #EBA400 solid 2px;
+        border-right: #EBA400 solid 2px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 8px 0;
+
+        .line {
+            @extend %line;
+            mix-blend-mode: overlay;           
+         }
+
+    }
+    .bottom-part{
+        height: 16px;
+        background: $vhs-t1-gradient;
+        transform: rotate(180deg);
+    }
+}
+}
