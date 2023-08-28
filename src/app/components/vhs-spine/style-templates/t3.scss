@@ -92,7 +92,9 @@
     }
 }
 
-
+.vhs-t3:hover{
+    @extend %vhs-spine-hover;
+}
 
 .vhs-back-t3 {
     @extend %spine-back;
@@ -105,8 +107,8 @@
 
         .content-part{
             flex-grow: 2;
-            border-left: #EBA400 solid 2px;
-            border-right: #EBA400 solid 2px;
+            border-left: #EBA400 solid 2px !important;
+            border-right: #EBA400 solid 2px !important;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -124,4 +126,8 @@
             transform: rotate(180deg);
         }
     }
+}
+
+.vhs-back-t3:hover{
+    @extend %vhs-back-hover;
 }

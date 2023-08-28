@@ -39,6 +39,12 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
 
 
 %vhs-effect {
+
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-delay: 50ms;
+    transition-timing-function: ease-in;
+
     position: relative;
     width: $spine-width;
     height: $spine-height;
@@ -186,6 +192,22 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
     height: 100%;
 }
 
+%vhs-spine-hover {
+    @extend %vhs-effect;
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0); 
+    background-color: #622074;
+    z-index: 3;
+
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-delay: 50ms;
+    transition-timing-function: ease-out;
+
+    .side-cover {
+        @extend %default-spine;
+    }
+
+}
 
 
 // ---------------------------------------------------------------------------------
@@ -200,9 +222,14 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
     overflow: hidden;
     border: 1px solid #747474;
     border-radius: 2px;
+    
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-delay: 50ms;
+    transition-timing-function: ease-out;
 
 
-    .sticker{
+    .sticker {
         @extend %vertical-center;
         background-color: $spine-back-cassette-color-white;
         z-index: 1;
@@ -212,7 +239,7 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
         justify-content: stretch;
 
         font-family: 'Permanent Marker', cursive;
-        writing-mode: vertical-lr; /* vertical-lr ou vertical-rl */
+        writing-mode: tb;
         height: 260px;
         width: 32px;
         bottom: 48px;
@@ -221,12 +248,13 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
         flex-direction: column;
         border-radius: 2px;
         overflow: hidden;
-        
-        .top-part{
+
+        .top-part {
             background: red;
             height: 32px;
         }
-        .content-part{
+
+        .content-part {
             flex-grow: 2;
             border-left: red solid 2px;
             border-right: red solid 2px;
@@ -237,18 +265,18 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
 
             .line {
                 @extend %line;
-                mix-blend-mode: overlay;           
-             }
-    
+                mix-blend-mode: overlay;
+            }
+
         }
-        .bottom-part{
+
+        .bottom-part {
             height: 16px;
             background: red;
         }
 
-        .title{
+        .title {
             position: absolute;
-            height: inherit;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
@@ -292,7 +320,7 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
     }
 
 
-    %insert{
+    %insert {
         @extend %vertical-center;
         width: 40px;
         position: absolute;
@@ -300,10 +328,10 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
         background: $spine-back-cassette-color-back-100;
         border-radius: 8px;
         border: 2px solid rgb(97, 97, 97);
-        mix-blend-mode: overlay; 
+        mix-blend-mode: overlay;
         bottom: 40px;
     }
-    
+
     .insert-top {
         -webkit-mask-image: $spine-back-cassette-color-back-gradient;
         mask-image: $spine-back-cassette-color-back-gradient ;
@@ -312,7 +340,7 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
         height: 280px;
         opacity: 0.6;
     }
-    
+
     .insert-bottom {
         -webkit-mask-image: $spine-back-cassette-color-back-gradient-revert;
         mask-image: $spine-back-cassette-color-back-gradient-revert ;
@@ -362,5 +390,17 @@ $spine-back-cassette-color-back-gradient-revert: linear-gradient(to bottom, tran
         mix-blend-mode: hard-light;
 
     }
+
+}
+
+%vhs-back-hover {
+    @extend %spine-back;
+    transform: matrix(1.1, 0, 0, 1.1, 0, 0); 
+    z-index: 3;
+
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-delay: 50ms;
+    transition-timing-function: ease-out;
 
 }

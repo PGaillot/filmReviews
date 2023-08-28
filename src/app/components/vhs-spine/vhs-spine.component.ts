@@ -60,8 +60,7 @@ export class VhsSpineComponent implements OnInit {
 
   ngOnInit(): void {
     this.randomVhsType = this.getRandomNumber(1, 3);
-    this.randomVhsSide = Math.random() < 0.5 ? VhsSide.Front : VhsSide.Back;
-
+    this.randomVhsSide = Math.random() < 0.75 ? VhsSide.Front : VhsSide.Back;
   }
 
 }

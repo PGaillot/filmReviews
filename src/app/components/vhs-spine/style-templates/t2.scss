@@ -63,6 +63,9 @@
     }
 }
 
+.vhs-t2:hover{
+    @extend %vhs-spine-hover;
+}
 
 
 
@@ -76,8 +79,8 @@
 
         .content-part{
             flex-grow: 2;
-            border-left:  rgba(231, 58, 78, 1) solid 2px;
-            border-right: rgba(96, 42, 153, 1) solid 2px;
+            border-left:  rgba(231, 58, 78, 1) solid 2px !important;
+            border-right: rgba(96, 42, 153, 1) solid 2px !important;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -96,3 +99,7 @@
         }
     }
  }
+
+ .vhs-back-t2:hover{
+    @extend %vhs-back-hover;
+}

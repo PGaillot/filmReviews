@@ -14,33 +14,43 @@
     }
 }
 
-.vhs-back-t1{
-   @extend %spine-back;
-   .sticker {
+.vhs-t1:hover {
+    @extend %vhs-spine-hover;
+}
 
-    .top-part {
-        background: $vhs-t1-gradient;
-    }
+.vhs-back-t1 {
+    @extend %spine-back;
 
-    .content-part{
-        flex-grow: 2;
-        border-left: #EBA400 solid 2px;
-        border-right: #EBA400 solid 2px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        padding: 8px 0;
+    .sticker {
 
-        .line {
-            @extend %line;
-            mix-blend-mode: overlay;           
-         }
+        .top-part {
+            background: $vhs-t1-gradient;
+        }
 
-    }
-    .bottom-part{
-        height: 16px;
-        background: $vhs-t1-gradient;
-        transform: rotate(180deg);
+        .content-part {
+            flex-grow: 2;
+            border-left: #EBA400 solid 2px !important;
+            border-right: #EBA400 solid 2px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 8px 0;
+
+            .line {
+                @extend %line;
+                mix-blend-mode: overlay;
+            }
+
+        }
+
+        .bottom-part {
+            height: 16px;
+            background: $vhs-t1-gradient;
+            transform: rotate(180deg);
+        }
     }
 }
+
+.vhs-back-t1:hover{
+    @extend %vhs-back-hover;
 }
