@@ -1,0 +1,42 @@
+@import '../variables.scss';
+
+$light-height: $vhs-height * $size-multiplicator;
+$light-width: $vhs-width * $size-multiplicator;
+
+
+
+#vhs {
+    position: relative;
+    //8,7 cm (7,4 po) sur 10,2 cm (4 po) sur 2,5 cm (1 po)
+    height: $vhs-height ;
+    width: $vhs-width ;
+    background: goldenrod;
+    overflow: hidden;
+    border-radius: $vhs-height * 0.0025 ;
+}
+
+
+.light {
+    position: absolute;
+    pointer-events: none;
+    height: $light-height;
+    width: $light-width;
+    border-radius: 100%;
+    background-color: antiquewhite;
+    filter: brightness(70%) blur(20px);
+    mix-blend-mode: hard-light;
+    z-index: 5;
+}
+
+.sticker {
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+#vhs:hover {
+    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.3));
+}

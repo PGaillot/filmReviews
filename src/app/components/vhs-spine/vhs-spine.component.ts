@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/models/movie.model';
 import { VhsSide } from './vhs-side.enum';
 
@@ -7,11 +7,15 @@ import { VhsSide } from './vhs-side.enum';
   templateUrl: './vhs-spine.component.html',
   styleUrls: ['./vhs-spine.component.scss', '../vhs-spine/style-templates/t1.scss',  '../vhs-spine/style-templates/t2.scss', '../vhs-spine/style-templates/t3.scss']
 })
-export class VhsSpineComponent implements OnInit {
+export class VhsSpineComponent implements OnInit, AfterViewInit {
   
-  constructor() { }
+  constructor(
+  ) { }
+  
   randomVhsType: number = 1;
   randomVhsSide: VhsSide = VhsSide.Front;
+  stickerRotation:number = 0;
+  stickerHeightPosition:number = 0;
   
   emptyMovie: Movie = {
     id: 0,
@@ -29,38 +33,44 @@ export class VhsSpineComponent implements OnInit {
     video: 0,
     vote_average: 0
   };
-
-  // @Input() movie:BehaviorSubject<Movie> = new BehaviorSubject<Movie>(this.emptyMovie);
+  
   @Input() movie!: Movie;
-
+  
   vhsModelNames: string[] = [
     '',
     'VHX-2000',
     'VIDEO CASSETTE',
     'High Quality',
   ]
-
+  
   brandModels:string[] = [
     '',
     'MEGA VISION',
     'HQ',
     'E-240',
   ]
-
+  
   bottomTexts:string[] = [
     '',
     'VHS',
     'colors',
     'VHS',
   ]
-
+  
   getRandomNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
+  
   ngOnInit(): void {
-    this.randomVhsType = this.getRandomNumber(1, 3);
-    this.randomVhsSide = Math.random() < 0.75 ? VhsSide.Front : VhsSide.Back;
+
   }
 
+
+  ngAfterViewInit(): void {
+    this.randomVhsType = this.getRandomNumber(1, 3);
+    this.randomVhsSide = Math.random() < 0.75 ? VhsSide.Front : VhsSide.Back;
+    this.stickerRotation = this.getRandomNumber(-87, -93);
+    this.stickerHeightPosition = this.getRandomNumber(30, 50);
+  }
+  
 }

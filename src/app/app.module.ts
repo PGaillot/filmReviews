@@ -15,6 +15,7 @@ import { GameComponent } from './components/game/game.component';
 import { VhsCollectionComponent } from './components/vhs-collection/vhs-collection.component';
 import { VhsSpineComponent } from './components/vhs-spine/vhs-spine.component';
 import { VHSComponent } from './components/vhs/vhs.component';
+import { StickerComponent } from './components/sticker/sticker.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { VHSComponent } from './components/vhs/vhs.component';
     VhsCollectionComponent,
     VhsSpineComponent,
     VHSComponent,
+    StickerComponent,
   ],
   imports: [
     BrowserModule,

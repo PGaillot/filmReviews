@@ -4,7 +4,7 @@
   href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=MuseoModerno:wght@200;700&family=Pathway+Extreme:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&family=Permanent+Marker&family=Share:wght@700&display=swap"
   rel="stylesheet">
 
-<ng-container *ngIf="randomVhsSide === 'front'; else backSideTemplate">
+<ng-container  *ngIf="randomVhsSide === 'front'; else backSideTemplate">
 
   <div [ngClass]="'vhs-t' + randomVhsType">
 
@@ -25,8 +25,8 @@
     <div class="bottom-reflect"></div>
 
     <div class="sticker" [ngStyle]="{
-        'top': getRandomNumber(30, 50) + '%',
-        'transform': 'rotate(' + getRandomNumber(-87, -93) +'deg)'
+        'top': stickerHeightPosition + '%',
+        'transform': 'rotate(' + stickerRotation +'deg)'
       }">
       <div class="title"
         [ngStyle]="{'font-size': movie.title.length < 10 ? '16px' : '12px', 'line-height': movie.title.length < 10 ? '16px' : '12px'}">

@@ -8,21 +8,24 @@ import { TMDBApi } from 'src/tmdb.api';
   templateUrl: './vhs-collection.component.html',
   styleUrls: ['./vhs-collection.component.scss']
 })
-export class VhsCollectionComponent implements OnInit, OnDestroy{
- 
-constructor(
-    private tmdbApi:TMDBApi,
+export class VhsCollectionComponent implements OnInit, OnDestroy {
+
+  constructor(
+    private tmdbApi: TMDBApi,
   ) { }
 
+  page:number = 1;
 
-  subscriptions:Subscription[] = [];
-  movieList:BehaviorSubject<Movie[]> = new BehaviorSubject<Movie[]>([])
+  subscriptions: Subscription[] = [];
+  movieList: BehaviorSubject<Movie[]> = new BehaviorSubject<Movie[]>([])
+
 
 
   ngOnInit(): void {
     this.subscriptions = [
-      this.tmdbApi.getCollection().subscribe(res => 
-        this.movieList.next(res.films))
+      this.tmdbApi.getDiscover(this.page, '16').subscribe(res => {
+        this.movieList.next(res)
+      })
     ]
   }
 

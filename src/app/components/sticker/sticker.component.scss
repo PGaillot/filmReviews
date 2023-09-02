@@ -1,0 +1,23 @@
+@import '../variables.scss';
+
+$sticker-height: $vhs-width * 0.4;
+$sticker-width: $vhs-height * 0.65;
+$sticker-padding: $sticker-height * 0.1;
+$sticker-border-radius: $sticker-padding;
+
+
+#sticker {
+    background: wheat;
+    height: $sticker-height;
+    width: $sticker-width;
+    padding: $sticker-padding;
+    border-radius: $sticker-border-radius;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .title {
+        font-family: 'Permanent Marker', cursive;
+        text-align: center;
+    }
+}

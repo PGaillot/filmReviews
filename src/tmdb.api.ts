@@ -73,8 +73,9 @@ export class TMDBApi {
      * @param include_adult (false by default)
      * @returns movie[] (observable)
      */
-    getDiscover(with_genres: string, include_video: boolean = false, include_adult: boolean = false): Observable<Movie[]> {
+    getDiscover(page:number = 1, with_genres: string, include_video: boolean = false, include_adult: boolean = false): Observable<Movie[]> {
         let discParams: HttpParams = this.params
+            .set('page', page)
             .set('include_video', include_video)
             .set('include_adult', include_adult)
             .set('with_genres', with_genres);

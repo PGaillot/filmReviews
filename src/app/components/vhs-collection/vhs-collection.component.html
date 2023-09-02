@@ -5,16 +5,8 @@
   rel="stylesheet">
 
 
-<div class="shelf-background">
-  <div class="shelf"></div>
-  <svg viewBox='0 0 1 100' class="dust">
-    <filter id='noiseFilter'>
-      <feTurbulence type='fractalNoise' baseFrequency='6' numOctaves='6' stitchTiles='stitch' />
-    </filter>
-    <rect width='100%' height='100%' filter='url(#noiseFilter)' />
-  </svg>
+  
   <div class="collection-container">
-    <app-vhs-spine [movie]="movie" *ngFor="let movie of movieList | async"></app-vhs-spine>
+    
+    <app-vhs [movie]="movie" *ngFor="let movie of movieList | async"></app-vhs>
   </div>
-  <div class="shelf" style="transform: rotate(180deg);"></div>
-</div>
