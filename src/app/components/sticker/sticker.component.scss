@@ -1,20 +1,28 @@
 @import '../variables.scss';
 
-$sticker-height: $vhs-width * 0.4;
+$sticker-height: $vhs-width * 0.6;
 $sticker-width: $vhs-height * 0.65;
 $sticker-padding: $sticker-height * 0.1;
 $sticker-border-radius: $sticker-padding;
 
+.sticker-wrapper {
+    min-width: $sticker-height;
+    width: $sticker-width;
+    max-height: $sticker-height;
+    min-height: $sticker-height * 0.9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    // filter: brightness(90%) contrast(90%);
+}
 
 #sticker {
-    background: wheat;
-    height: $sticker-height;
-    width: $sticker-width;
-    padding: $sticker-padding;
+    background: $stk-background;
     border-radius: $sticker-border-radius;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    // padding: 0 1em;
 
     .title {
         font-family: 'Permanent Marker', cursive;

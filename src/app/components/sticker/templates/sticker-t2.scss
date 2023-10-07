@@ -1,0 +1,10 @@
+@import '/src/app/components/variables.scss';
+@import '../sticker.component.scss';
+
+.sticker-t2 {
+
+    #sticker {
+        border: 0.25rem solid $stk-t1-primary;
+    }
+
+}

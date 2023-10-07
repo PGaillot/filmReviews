@@ -13,7 +13,7 @@ export enum Side {
 @Component({
   selector: 'app-vhs',
   templateUrl: './vhs.component.html',
-  styleUrls: ['./vhs.component.scss']
+  styleUrls: ['./vhs.component.scss', './templates/vhs-t1.scss', './templates/vhs-t2.scss']
 })
 export class VHSComponent implements OnInit {
 
@@ -24,6 +24,8 @@ export class VHSComponent implements OnInit {
 
   @Input() movie!: Movie;
 
+  style: number = 0;
+
   mostX: number = 10;
   mostY: number = 10;
   topLightPosition: string = '-50%'
@@ -32,6 +34,9 @@ export class VHSComponent implements OnInit {
   //Sticker
   stickerVerticalPosition: number = 0;
 
+  getRandomNumber(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
   @HostListener('mousemove', ['$event'])
   onmousemove(e: any) {
@@ -75,9 +80,16 @@ export class VHSComponent implements OnInit {
     this.lightRef.nativeElement.style.left = this.leftLightPosition;
   }
 
+  public get classes():string{
+    return `vhs-t${this.style}`
+  }
+
   ngOnInit(): void {
     this.initLightPosition();
     this.stickerVerticalPosition = Math.floor(Math.random() * (50 - 30 + 1)) + 30;
+    this.style = this.getRandomNumber(1, 2);
+    console.log('vhs style : ' + this.style);
+    
   }
 
 }

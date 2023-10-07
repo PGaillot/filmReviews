@@ -10,7 +10,7 @@ $light-width: $vhs-width * $size-multiplicator;
     //8,7 cm (7,4 po) sur 10,2 cm (4 po) sur 2,5 cm (1 po)
     height: $vhs-height ;
     width: $vhs-width ;
-    background: goldenrod;
+    // background: goldenrod;
     overflow: hidden;
     border-radius: $vhs-height * 0.0025 ;
 }

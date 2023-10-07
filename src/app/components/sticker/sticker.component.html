@@ -1,3 +1,14 @@
-<div id="sticker" [ngStyle]="{'transform':'rotate('+rotation+'deg)', 'margin-top':verticalPosition + '%'}">
-    <p #titleElement class="title">{{title}}</p>
+<div class="sticker-wrapper" [ngClass]="'sticker-t'+ style"
+    [ngStyle]="{'transform':'rotate('+rotation+'deg)', 'margin-top':verticalPosition + '%'}">
+
+    <div #sticker id="sticker">
+
+        <p #titleElement class="title">{{title}}</p>
+
+        <div class="mask">
+
+        </div>
+
+    </div>
+
 </div>
