@@ -2,16 +2,10 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription, interval, timer } from 'rxjs';
+import { Keyword } from 'src/app/models/keyword.model';
 import { GameService } from 'src/app/services/game.service';
 import { ImageService } from 'src/app/services/image.service';
 import { TMDBApi } from 'src/tmdb.api';
-
-export interface Keyword {
-  'keyword': string
-  'score': number
-  'color'?: string;
-  'message'?: string;
-}
 
 @Component({
   selector: 'app-game',
@@ -63,8 +57,9 @@ export class GameComponent implements OnInit, AfterViewInit {
       bonusPoints = Math.round(bonusPoints * 10) / 10;
       let keyword: Keyword = {
         'keyword': wordsArray[i].toLocaleLowerCase(),
-        'score': 2 + bonusPoints,
-        'color': 'findable'
+        'score': this.gameService.getWordScore(wordsArray[i]),
+        'color': 'findable',
+        'available':true
       }
       const wordsIndex: number = this.keywords.findIndex((kw) => kw.keyword === wordsArray[i].toLocaleLowerCase());
       // if the keyword is not in the list.
@@ -106,7 +101,7 @@ export class GameComponent implements OnInit, AfterViewInit {
       this.testedKw = [...this.testedKw, this.currentKws[indexUnaccented]];
       this.currentKws.splice(indexUnaccented, 1)
     } else {
-      { this.testedKw = [...this.testedKw, { 'keyword': value, 'score': 0 }] }
+      { this.testedKw = [...this.testedKw, { 'keyword': value, 'score': 0 , 'available':true}] }
     }
     console.log(this.currentKws);
     keywordsInput.value = '';
