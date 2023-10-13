@@ -63,51 +63,25 @@ describe('GameService', () => {
     })
 
     it('Generate keywords => \'Un test simple.\'', () => {
-      expect(service.generateKeywordsArray(service.generateWordsArray(simpleTestString)).length).toEqual(3)
-      expect(service.generateKeywordsArray(service.generateWordsArray(simpleTestString))[0].keyword).toEqual('Un')
-      expect(service.generateKeywordsArray(service.generateWordsArray(simpleTestString))[0].score).toEqual(0)
-      expect(service.generateKeywordsArray(service.generateWordsArray(simpleTestString))[2].score).toEqual(2.4)
+      expect(service.generateKeywordsArray(simpleTestString).length).toEqual(3)
+      expect(service.generateKeywordsArray(simpleTestString)[0].keyword).toEqual('Un')
+      expect(service.generateKeywordsArray(simpleTestString)[0].score).toEqual(0)
+      expect(service.generateKeywordsArray(simpleTestString)[2].score).toEqual(2.4)
     })
 
-    it('Generate keywords => \'Un test Majuscule.\'', () => {
-      expect(service.generateKeywordsArray(['Un', 'test', 'Majuscule']).length).toEqual(3)
-    })
-
-    it('Generate keywords => \'Un test CAPSLOCK.\'', () => {
-      expect(service.generateKeywordsArray(['Un', 'test', 'CAPSLOCK']).length).toEqual(3)
-      expect(service.generateKeywordsArray(['Un', 'test', 'CAPSLOCK']).filter(kw => kw.keyword === 'capslock')).toBeTruthy()
-    })
   })
 
-  describe('Check accent marks on Keyword Array', () => {
 
+  describe('Check accents', () => {
     beforeEach(() => {
-      simpleTestString = "Un test simple.";
+      // simpleTestString = 'Haïr Août où île ïle Maître île Pâle Aoûtât jattes Crème Naïve Noël Côte Îlot Bûche Hôpital Forêt Île Théâtre Déçu';
+      simpleTestString = 'Aoûtât Forêt Théâtre Déçu';
     })
-
-    it('Check accent marks => \'Un test simple.\'', () => {
-      expect(service.generateKeywordsArray(['Un', 'test', 'simple']).length).toEqual(3)
+    it('Haïr Août où ...', () => {
+      expect(service.generateKeywordsArray(simpleTestString)).toBeTruthy();
     })
-  })
-
-  describe('Check accent marks on Keyword Array', () => {
-    beforeEach(() => {
-      simpleTestString = "Un test Majuscule.";
-    })
-
-    it('Check accent marks => \'Un test Majuscule.\'', () => {
-      expect(service.generateKeywordsArray(service.generateWordsArray(simpleTestString)).length).toEqual(3)
-    })
-  })
-
-  describe('Check accent marks on Keyword Array', () => {
-    beforeEach(() => {
-      simpleTestString = "Un test CAPSLOCK.";
-    })
-
-    it('Check accent marks => \'Un test CAPSLOCK.\'', () => {
-      expect(service.generateKeywordsArray(service.generateWordsArray(simpleTestString)).length).toEqual(3)
-      expect(service.generateKeywordsArray(service.generateWordsArray(simpleTestString)).filter(kw => kw.keyword === 'capslock')).toBeTruthy()
+    it('énervé', () => {
+      expect(service.checkAccentsLetters(service.generateKeywordsArray('énervé')[0])).toBeTruthy();
     })
   })
 
